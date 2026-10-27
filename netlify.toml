@@ -1,8 +1,9 @@
-# Only used if you host on Netlify. The site lives in the storefront/ folder.
-# Netlify detects Next.js by itself; do not set a publish directory.
+# Netlify settings. The site lives in the storefront/ folder.
+# These override anything typed in the Netlify dashboard.
 [build]
   base = "storefront"
   command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "22"
