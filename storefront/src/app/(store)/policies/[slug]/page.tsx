@@ -51,7 +51,7 @@ export default async function PolicyPage({ params }: Props) {
   const page = await load(slug)
   if (!page) notFound()
   return (
-    <div className="container section">
+    <div className="wrap section">
       <header className="page-head">
         <h1>{page.title}</h1>
       </header>

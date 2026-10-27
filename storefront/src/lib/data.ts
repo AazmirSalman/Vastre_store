@@ -6,6 +6,9 @@ import type { Collection, Product, Settings } from './types'
 const SETTINGS_QUERY = `*[_id == "siteSettings"][0]{
   storeName, tagline, announcement, heroHeadline, heroText,
   heroImage{ asset, hotspot, crop, alt }, heroButton,
+  heroSlides[]{ title, text, buttonText, image{ asset, hotspot, crop, alt }, "collection": collection->{ title, "slug": slug.current } },
+  lookbook[]{ image{ asset, hotspot, crop, alt }, "product": product->{ name, "slug": slug.current } },
+  storyTitle, storyText, storyImage{ asset, hotspot, crop, alt },
   whatsappNumber, instagram, email,
   deliveryFee, freeDeliveryOver, deliveryTime, returnSummary, codNote,
   sizeChart{ asset, hotspot, crop, alt },

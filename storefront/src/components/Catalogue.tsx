@@ -17,7 +17,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
 export function CollectionChips({ collections, current }: { collections: Collection[]; current?: string }) {
   if (collections.length === 0) return null
   return (
-    <nav className="chips" aria-label="Collections">
+    <nav className="chips" aria-label="Filter by collection">
       <Link href="/shop" className="chip" aria-current={!current ? 'page' : undefined}>
         All
       </Link>

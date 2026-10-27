@@ -37,7 +37,22 @@ export type Product = {
   tone?: Tone
 }
 
+export type HeroSlide = {
+  title?: string
+  text?: string
+  buttonText?: string
+  image?: Img
+  collection?: { title: string; slug: string } | null
+}
+
+export type LookItem = { image?: Img; product?: { name: string; slug: string } | null }
+
 export type Settings = {
+  heroSlides?: HeroSlide[]
+  lookbook?: LookItem[]
+  storyTitle?: string
+  storyText?: string
+  storyImage?: Img
   storeName: string
   tagline?: string
   announcement?: string

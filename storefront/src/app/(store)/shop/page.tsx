@@ -8,9 +8,10 @@ export const metadata: Metadata = { title: 'Shop all' }
 export default async function ShopPage() {
   const [collections, products] = await Promise.all([getCollections(), getProducts()])
   return (
-    <div className="container section">
+    <div className="wrap section">
       <header className="page-head">
-        <h1>Shop all</h1>
+        <h1>All pieces</h1>
+        <p className="lede">Every piece in the store, newest first.</p>
         <CollectionChips collections={collections} />
       </header>
       {products.length > 0 ? (

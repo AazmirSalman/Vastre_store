@@ -15,6 +15,10 @@ type CartContext = {
   setQty: (key: string, qty: number) => void
   remove: (key: string) => void
   clear: () => void
+  /** The slide-out cart. */
+  drawerOpen: boolean
+  openDrawer: () => void
+  closeDrawer: () => void
 }
 
 const Ctx = createContext<CartContext | null>(null)
@@ -34,6 +38,7 @@ function load(): CartLine[] {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([])
   const [ready, setReady] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     setLines(load())
@@ -71,10 +76,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const remove = useCallback((key: string) => setLines((prev) => prev.filter((l) => lineKey(l) !== key)), [])
   const clear = useCallback(() => setLines([]), [])
+  const openDrawer = useCallback(() => setDrawerOpen(true), [])
+  const closeDrawer = useCallback(() => setDrawerOpen(false), [])
 
   const value = useMemo<CartContext>(
-    () => ({ lines, ready, count: lines.reduce((n, l) => n + l.qty, 0), add, setQty, remove, clear }),
-    [lines, ready, add, setQty, remove, clear],
+    () => ({ lines, ready, count: lines.reduce((n, l) => n + l.qty, 0), add, setQty, remove, clear, drawerOpen, openDrawer, closeDrawer }),
+    [lines, ready, add, setQty, remove, clear, drawerOpen, openDrawer, closeDrawer],
   )
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>
 }

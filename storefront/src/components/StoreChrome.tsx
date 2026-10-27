@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
-import '@fontsource-variable/bodoni-moda/opsz.css'
-import '@fontsource-variable/jost/wght.css'
+import '@fontsource/gilda-display/400.css'
+import '@fontsource-variable/instrument-sans/wght.css'
 import '../app/globals.css'
+import { CartDrawer } from '@/components/CartDrawer'
 import { CartProvider } from '@/components/CartProvider'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -37,10 +38,16 @@ export async function StoreChrome({ children }: { children: ReactNode }) {
               Preview with sample products. Connect the catalogue to show the real ones.
             </p>
           ) : null}
-          {settings.announcement ? <p className="announce">{settings.announcement}</p> : null}
-          <Header storeName={settings.storeName} collections={collections.map((c) => ({ title: c.title, slug: c.slug }))} />
+          {settings.announcement ? <p className="ann">{settings.announcement}</p> : null}
+          <Header
+            storeName={settings.storeName}
+            collections={collections.map((c) => ({ title: c.title, slug: c.slug }))}
+            instagram={settings.instagram}
+            codNote={settings.codNote}
+          />
           <main id="main">{children}</main>
           <Footer settings={settings} collections={collections} />
+          <CartDrawer />
         </CartProvider>
       </StoreProvider>
     </>

@@ -39,6 +39,18 @@ Open it, click the **...** menu at the bottom, choose **Unpublish**. To bring it
 
 Open a product and turn on **Show on the home page**. With fewer than four featured, the newest products fill the row.
 
+## Change the big photos and sections on the home page
+
+Click **Site settings**, then the **Home page** tab.
+
+- **Big photos at the top (slideshow):** add 2 or 3 slides. Each slide has a photo, a short title, one line of text, the
+  button text and which collection the button opens. After uploading a photo, click the crop icon and drag the circle onto
+  the face or outfit, so it stays in view on phones and laptops.
+- **Brand block:** the half-photo, half-text section in the middle of the page.
+- **"Shop the look" photos:** six photos look best. For each one, pick the product it opens.
+
+Press **Publish**. The home page updates within about a minute.
+
 ## Change delivery charge, banner, headline, WhatsApp number
 
 Click **Site settings**. The tabs across the top group everything:

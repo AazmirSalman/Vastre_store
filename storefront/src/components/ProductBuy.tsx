@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { SITE_URL } from '@/lib/config'
 import { formatPKR } from '@/lib/format'
@@ -20,7 +19,7 @@ type Props = {
 }
 
 export function ProductBuy({ id, slug, name, price, sizes, soldOutSizes, soldOut }: Props) {
-  const { add } = useCart()
+  const { add, openDrawer } = useCart()
   const { whatsappNumber } = useStore()
   const [size, setSize] = useState('')
   const [qty, setQty] = useState(1)
@@ -51,6 +50,7 @@ export function ProductBuy({ id, slug, name, price, sizes, soldOutSizes, soldOut
     track('AddToCart', { content_ids: [id], content_name: name, content_type: 'product', value: price * qty, currency: 'PKR' })
     setError('')
     setAdded(true)
+    openDrawer()
   }
 
   const ask = waLink(whatsappNumber, `Assalam o Alaikum! I have a question about ${name}: ${SITE_URL}/product/${slug}`)
@@ -121,12 +121,8 @@ export function ProductBuy({ id, slug, name, price, sizes, soldOutSizes, soldOut
         Add to cart &middot; {formatPKR(price * qty)}
       </button>
 
-      <div role="status" className="added-wrap">
-        {added ? (
-          <p className="added">
-            Added to your cart. <Link href="/cart">View cart</Link> or <Link href="/checkout">go to checkout</Link>.
-          </p>
-        ) : null}
+      <div role="status" className="visually-hidden">
+        {added ? 'Added to your cart.' : ''}
       </div>
 
       {ask ? (

@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Your cart', robots: { index: false, 
 
 export default function CartPage() {
   return (
-    <div className="container section">
+    <div className="wrap section">
       <header className="page-head">
         <h1>Your cart</h1>
       </header>

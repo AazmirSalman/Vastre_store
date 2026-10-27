@@ -30,7 +30,7 @@ export const collection = defineType({
       name: 'image',
       title: 'Cover photo',
       type: 'image',
-      description: 'Shown inside the arch on the home page. A tall photo works best.',
+      description: 'Shown on the home page under "Shop by edit". A tall photo works best.',
       options: { hotspot: true },
       fields: [defineField({ name: 'alt', title: 'Short description of the photo (optional)', type: 'string' })],
     }),

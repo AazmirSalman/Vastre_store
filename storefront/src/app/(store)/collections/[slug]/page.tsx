@@ -28,7 +28,7 @@ export default async function CollectionPage({ params }: Props) {
   if (!collection) notFound()
   const items = products.filter((p) => p.collections?.some((c) => c.slug === slug))
   return (
-    <div className="container section">
+    <div className="wrap section">
       <header className="page-head">
         <h1>{collection.title}</h1>
         {collection.description ? <p className="lede">{collection.description}</p> : null}

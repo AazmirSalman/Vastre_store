@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const siteSettings = defineType({
   name: 'siteSettings',
@@ -39,23 +39,88 @@ export const siteSettings = defineType({
     }),
 
     defineField({
-      name: 'heroHeadline',
-      title: 'Home page headline',
-      type: 'string',
+      name: 'heroSlides',
+      title: 'Big photos at the top (slideshow)',
+      type: 'array',
       group: 'home',
-      validation: (r) => r.required().max(70),
+      description: 'Two or three slides work best. Each one is a full-width photo with a title and a button. Drag to change the order.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'heroSlide',
+          title: 'Slide',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Photo',
+              type: 'image',
+              description: 'A tall, sharp photo. After uploading, click the crop icon and drag the circle onto the face or the outfit so phones and laptops keep it in view.',
+              options: { hotspot: true },
+              validation: (r) => r.required(),
+            }),
+            defineField({ name: 'title', title: 'Title', type: 'string', description: 'Short, e.g. "The Festive Edit".', validation: (r) => r.max(40) }),
+            defineField({ name: 'text', title: 'Line under the title', type: 'string', validation: (r) => r.max(90) }),
+            defineField({ name: 'buttonText', title: 'Button text', type: 'string', description: 'e.g. "Shop festive". Leave empty for "Shop now".', validation: (r) => r.max(24) }),
+            defineField({
+              name: 'collection',
+              title: 'Button opens this collection',
+              type: 'reference',
+              to: [{ type: 'collection' }],
+              description: 'Leave empty to open all products.',
+            }),
+          ],
+          preview: { select: { title: 'title', media: 'image' }, prepare: ({ title, media }) => ({ title: title || 'Slide', media }) },
+        }),
+      ],
+      validation: (r) => r.max(5),
     }),
-    defineField({ name: 'heroText', title: 'Home page text under the headline', type: 'text', rows: 3, group: 'home', validation: (r) => r.max(200) }),
     defineField({
-      name: 'heroImage',
-      title: 'Home page photo',
+      name: 'storyImage',
+      title: 'Photo for the "about the brand" block',
       type: 'image',
       group: 'home',
-      description: 'Shown inside the arch at the top of the home page. A tall photo of a model wearing your best piece works best.',
+      description: 'Shown half-width on the home page next to the text below.',
+      options: { hotspot: true },
+    }),
+    defineField({ name: 'storyTitle', title: 'Brand block title', type: 'string', group: 'home', validation: (r) => r.max(60) }),
+    defineField({ name: 'storyText', title: 'Brand block text', type: 'text', rows: 3, group: 'home', validation: (r) => r.max(260) }),
+    defineField({
+      name: 'lookbook',
+      title: '"Shop the look" photos',
+      type: 'array',
+      group: 'home',
+      description: 'Six photos look best. Tapping one opens the product you pick for it.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'look',
+          title: 'Look',
+          fields: [
+            defineField({ name: 'image', title: 'Photo', type: 'image', options: { hotspot: true }, validation: (r) => r.required() }),
+            defineField({ name: 'product', title: 'Opens this product', type: 'reference', to: [{ type: 'product' }], validation: (r) => r.required() }),
+          ],
+          preview: { select: { title: 'product.name', media: 'image' }, prepare: ({ title, media }) => ({ title: title || 'Look', media }) },
+        }),
+      ],
+      validation: (r) => r.max(12),
+    }),
+    defineField({
+      name: 'heroHeadline',
+      title: 'Headline (only used when there are no slides)',
+      type: 'string',
+      group: 'home',
+      validation: (r) => r.max(70),
+    }),
+    defineField({ name: 'heroText', title: 'Text under the headline (also used in Google results)', type: 'text', rows: 3, group: 'home', validation: (r) => r.max(200) }),
+    defineField({
+      name: 'heroImage',
+      title: 'Photo (only used when there are no slides)',
+      type: 'image',
+      group: 'home',
       options: { hotspot: true },
       fields: [defineField({ name: 'alt', title: 'Short description of the photo', type: 'string' })],
     }),
-    defineField({ name: 'heroButton', title: 'Main button text', type: 'string', group: 'home', initialValue: 'Shop new arrivals', validation: (r) => r.required().max(30) }),
+    defineField({ name: 'heroButton', title: 'Button text (only used when there are no slides)', type: 'string', group: 'home', initialValue: 'Shop new arrivals', validation: (r) => r.max(30) }),
 
     defineField({
       name: 'deliveryFee',

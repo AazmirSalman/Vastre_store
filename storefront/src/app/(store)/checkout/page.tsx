@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Checkout', robots: { index: false, f
 
 export default function CheckoutPage() {
   return (
-    <div className="container section">
+    <div className="wrap section">
       <header className="page-head">
         <h1>Checkout</h1>
       </header>

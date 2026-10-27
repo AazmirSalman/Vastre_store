@@ -5,7 +5,7 @@ import { StoreChrome } from '@/components/StoreChrome'
 export default function NotFound() {
   return (
     <StoreChrome>
-      <div className="container section">
+      <div className="wrap section">
         <div className="empty">
           <p className="empty__title">We could not find that page</p>
           <p className="muted">The link may be old, or the piece may no longer be on sale.</p>

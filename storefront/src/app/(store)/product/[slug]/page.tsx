@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ProductGrid } from '@/components/Catalogue'
+import { Gallery } from '@/components/Gallery'
 import { ProductBuy } from '@/components/ProductBuy'
 import { ProductImage } from '@/components/ProductImage'
 import { PixelEvent } from '@/components/Tracking'
@@ -64,7 +65,7 @@ export default async function ProductPage({ params }: Props) {
   }
 
   return (
-    <div className="container pdp-wrap">
+    <div className="wrap pdp-wrap">
       <PixelEvent
         event="ViewContent"
         data={{ content_ids: [product._id], content_name: product.name, content_type: 'product', value: product.price, currency: 'PKR' }}
@@ -84,9 +85,9 @@ export default async function ProductPage({ params }: Props) {
       </nav>
 
       <div className="pdp">
-        <div className="pdp__gallery">
+        <Gallery count={images.length}>
           {images.map((img, i) => (
-            <div key={i} className="pdp__shot">
+            <figure key={i}>
               <ProductImage
                 img={img}
                 alt={img?.alt || (i === 0 ? product.name : `${product.name}, photo ${i + 1}`)}
@@ -94,22 +95,24 @@ export default async function ProductPage({ params }: Props) {
                 priority={i === 0}
                 sizes="(min-width: 900px) 34vw, 86vw"
               />
-            </div>
+            </figure>
           ))}
-        </div>
+        </Gallery>
 
-        <div className="pdp__info">
-          <h1 className="pdp__title">{product.name}</h1>
-          <p className="price-row">
-            <span className="price">{formatPKR(product.price)}</span>
+        <div className="info">
+          <h1>{product.name}</h1>
+          {product.fabric ? <p className="fab">{product.fabric}</p> : null}
+          <p className="price price--big">
             {product.compareAtPrice && product.compareAtPrice > product.price ? (
               <>
-                <s className="price__was">{formatPKR(product.compareAtPrice)}</s>
-                {off ? <span className="price__off">{off}% off</span> : null}
+                <span className="now">{formatPKR(product.price)}</span>
+                <s>{formatPKR(product.compareAtPrice)}</s>
+                {off ? <span className="off">{off}% off</span> : null}
               </>
-            ) : null}
+            ) : (
+              formatPKR(product.price)
+            )}
           </p>
-          {product.fabric ? <p className="muted">{product.fabric}</p> : null}
 
           <ProductBuy
             id={product._id}
@@ -124,7 +127,7 @@ export default async function ProductPage({ params }: Props) {
           <div className="acc">
             {product.description || (product.details && product.details.length > 0) ? (
               <details open>
-                <summary>Details</summary>
+                <summary>Description</summary>
                 <div className="acc__body">
                   {product.description ? <p className="pre">{product.description}</p> : null}
                   {product.details && product.details.length > 0 ? (
@@ -146,7 +149,7 @@ export default async function ProductPage({ params }: Props) {
               </details>
             ) : null}
             <details>
-              <summary>Delivery and returns</summary>
+              <summary>Delivery and exchange</summary>
               <div className="acc__body">
                 <ul>
                   {settings.codNote ? <li>{settings.codNote}</li> : null}
@@ -171,8 +174,8 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       {related.length > 0 ? (
-        <section className="section" aria-labelledby="related-title">
-          <div className="section__head">
+        <section className="section section--flush" aria-labelledby="related-title">
+          <div className="sec-head">
             <h2 id="related-title">You may also like</h2>
           </div>
           <ProductGrid products={related} />

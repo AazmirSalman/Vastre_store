@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Order placed', robots: { index: fals
 
 export default function OrderConfirmedPage() {
   return (
-    <div className="container section">
+    <div className="wrap section">
       <OrderConfirmed />
     </div>
   )
