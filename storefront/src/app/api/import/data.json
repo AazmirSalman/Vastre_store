@@ -1,0 +1,495 @@
+{
+ "collections": [
+  {
+   "title": "Georgette",
+   "slug": "georgette",
+   "description": "Double georgette with embroidery and cutwork, for weddings, Eid and every dinner in between.",
+   "image": "cover-georgette.jpg",
+   "sortOrder": 1
+  },
+  {
+   "title": "Velvet",
+   "slug": "velvet",
+   "description": "Phoenix velvet with crystals and brooches for the winter season.",
+   "image": "cover-velvet.jpg",
+   "sortOrder": 2
+  },
+  {
+   "title": "Silk",
+   "slug": "silk",
+   "description": "Premium silk with cutwork and hand embroidery.",
+   "image": "cover-silk.jpg",
+   "sortOrder": 3
+  },
+  {
+   "title": "Everyday",
+   "slug": "everyday",
+   "description": "Textured gauze and Irish pashmina sets for work and every day.",
+   "image": "cover-everyday.jpg",
+   "sortOrder": 4
+  }
+ ],
+ "products": [
+  {
+   "slug": "elara",
+   "name": "Élara",
+   "price": 22000,
+   "collection": "georgette",
+   "fabric": "Yellow, double georgette, three piece",
+   "description": "A graceful expression of understated luxury, this yellow ensemble features intricate embroidery across the neckline, sleeves and hem. Delicate pearl embellishments, including dangling pearl details, lend a soft, luminous finish to the silhouette.",
+   "details": [
+    "Shirt: premium double georgette",
+    "Trouser: premium double georgette",
+    "Dupatta: pure chiffon with georgette hem"
+   ],
+   "photos": [
+    "elara-1.jpg",
+    "elara-2.jpg",
+    "elara-3.jpg",
+    "elara-4.jpg",
+    "elara-5.jpg",
+    "elara-6.jpg"
+   ],
+   "badge": "New",
+   "customSize": true,
+   "featured": true
+  },
+  {
+   "slug": "sapphire",
+   "name": "Sapphire",
+   "price": 22500,
+   "collection": "georgette",
+   "fabric": "Royal blue, double georgette, three piece",
+   "description": "Bold, timeless and sophisticated, this royal blue ensemble brings together rich colour and intricate craftsmanship. The shirt features detailed cutwork embroidery along the slits and hem, complemented by carefully finished decorative work that enhances its silhouette.",
+   "details": [
+    "Shirt: premium double georgette",
+    "Trouser: premium double georgette",
+    "Dupatta: pure chiffon with georgette hem"
+   ],
+   "photos": [
+    "sapphire-1.jpg",
+    "sapphire-2.jpg",
+    "sapphire-3.jpg",
+    "sapphire-4.jpg",
+    "sapphire-5.jpg"
+   ],
+   "badge": "New",
+   "customSize": true,
+   "featured": true
+  },
+  {
+   "slug": "roselle",
+   "name": "Roselle",
+   "price": 20500,
+   "collection": "georgette",
+   "fabric": "Peach, double georgette, three piece",
+   "description": "Soft, feminine and effortlessly refined, this peach ensemble brings a delicate charm to everyday dressing and special occasions. Crafted in premium double georgette, its elegant silhouette is complemented by thoughtfully placed embroidery that adds texture and visual interest. Finished with a pure chiffon dupatta and plain trousers, this design offers a polished look with a timeless appeal.",
+   "details": [
+    "Shirt: premium double georgette",
+    "Trouser: premium double georgette",
+    "Dupatta: pure chiffon with georgette hem"
+   ],
+   "photos": [
+    "roselle-1.jpg",
+    "roselle-2.jpg",
+    "roselle-3.jpg",
+    "roselle-4.jpg",
+    "roselle-5.jpg"
+   ],
+   "badge": "New",
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "serene",
+   "name": "Serene",
+   "price": 22000,
+   "collection": "georgette",
+   "fabric": "Ice blue, double georgette, three piece",
+   "description": "A graceful expression of understated luxury, this ice blue ensemble features intricate embroidery across the neckline, sleeves and hem, finished with delicate scalloped cutwork for a soft, airy silhouette.",
+   "details": [
+    "Shirt: premium double georgette",
+    "Trouser: premium double georgette",
+    "Dupatta: pure chiffon with georgette hem"
+   ],
+   "photos": [
+    "serene-1.jpg",
+    "serene-2.jpg",
+    "serene-3.jpg",
+    "serene-4.jpg"
+   ],
+   "badge": "New",
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "lilac-haze",
+   "name": "Lilac Haze",
+   "price": 18500,
+   "collection": "georgette",
+   "fabric": "White and lilac, double georgette, three piece",
+   "description": "Fresh white meets delicate lilac in this contemporary contrast. The contrasting striped sleeve detailing adds a distinctive design element.",
+   "details": [
+    "Shirt: double georgette",
+    "Trouser: double georgette",
+    "Dupatta: chiffon"
+   ],
+   "photos": [
+    "lilac-haze-1.jpg",
+    "lilac-haze-2.jpg",
+    "lilac-haze-3.jpg",
+    "lilac-haze-4.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "azure-muse",
+   "name": "Azure Muse",
+   "price": 18500,
+   "collection": "georgette",
+   "fabric": "White and navy, double georgette, three piece",
+   "description": "Fresh white meets navy blue in this contemporary contrast. The contrasting striped sleeve detailing adds a distinctive design element.",
+   "details": [
+    "Shirt: double georgette",
+    "Trouser: double georgette",
+    "Dupatta: chiffon"
+   ],
+   "photos": [
+    "azure-muse-1.jpg",
+    "azure-muse-2.jpg",
+    "azure-muse-3.jpg",
+    "azure-muse-4.jpg",
+    "azure-muse-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "rose-bloom",
+   "name": "Rosé Bloom",
+   "price": 18500,
+   "collection": "georgette",
+   "fabric": "White and pink, double georgette, three piece",
+   "description": "Fresh white meets delicate pink in this contemporary contrast. The contrasting striped sleeve detailing adds a distinctive design element.",
+   "details": [
+    "Shirt: double georgette",
+    "Trouser: double georgette",
+    "Dupatta: chiffon"
+   ],
+   "photos": [
+    "rose-bloom-1.jpg",
+    "rose-bloom-2.jpg",
+    "rose-bloom-3.jpg",
+    "rose-bloom-4.jpg",
+    "rose-bloom-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": true
+  },
+  {
+   "slug": "noire",
+   "name": "Noiré",
+   "price": 26500,
+   "collection": "silk",
+   "fabric": "Classic black, silk, three piece",
+   "description": "A statement in timeless sophistication, this black silk ensemble combines a rich, elegant finish with intricate cutwork and embroidery.",
+   "details": [
+    "Shirt: premium silk",
+    "Trouser: premium silk",
+    "Dupatta: chiffon with a silk border"
+   ],
+   "photos": [
+    "noire-1.jpg",
+    "noire-2.jpg",
+    "noire-3.jpg",
+    "noire-4.jpg",
+    "noire-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "mahogany",
+   "name": "Mahogany",
+   "price": 35500,
+   "collection": "silk",
+   "fabric": "Bronze, hand-embroidered silk, three piece",
+   "description": "Rich, warm and beautifully sophisticated, this bronze ensemble showcases the beauty of premium silk through a combination of cutwork and hand embroidery.",
+   "details": [
+    "Shirt: premium silk",
+    "Trouser: premium silk",
+    "Dupatta: chiffon with silk hem"
+   ],
+   "photos": [
+    "mahogany-1.jpg",
+    "mahogany-2.jpg",
+    "mahogany-3.jpg",
+    "mahogany-4.jpg",
+    "mahogany-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "rouge-royale",
+   "name": "Rouge Royale",
+   "price": 22500,
+   "collection": "velvet",
+   "fabric": "Maroon velvet, three piece",
+   "description": "Deep maroon velvet captures the essence of timeless occasion dressing. The plush appearance of the fabric is enhanced with crystal embellishments that catch the light and add a refined touch of glamour. Paired with a flowing chiffon dupatta with crystals on the hem and plain trousers, this ensemble brings together rich colour, elegant texture and statement-worthy detailing.",
+   "details": [
+    "Shirt: premium Phoenix velvet",
+    "Trouser: premium Phoenix velvet",
+    "Dupatta: pure chiffon with crystal hem"
+   ],
+   "photos": [
+    "rouge-royale-1.jpg",
+    "rouge-royale-2.jpg",
+    "rouge-royale-3.jpg",
+    "rouge-royale-4.jpg",
+    "rouge-royale-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": true
+  },
+  {
+   "slug": "violetta",
+   "name": "Violetta",
+   "price": 22500,
+   "collection": "velvet",
+   "fabric": "Purple velvet, three piece",
+   "description": "Deep purple velvet captures the essence of timeless occasion dressing. The plush appearance of the fabric is enhanced with crystal embellishments that catch the light and add a refined touch of glamour. Paired with a flowing chiffon dupatta with crystals on the hem and plain trousers, this ensemble brings together rich colour, elegant texture and statement-worthy detailing.",
+   "details": [
+    "Shirt: premium Phoenix velvet",
+    "Trouser: premium Phoenix velvet",
+    "Dupatta: pure chiffon with crystal hem"
+   ],
+   "photos": [
+    "violetta-1.jpg",
+    "violetta-2.jpg",
+    "violetta-3.jpg",
+    "violetta-4.jpg",
+    "violetta-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "rose-royale",
+   "name": "Rose Royale",
+   "price": 25500,
+   "collection": "velvet",
+   "fabric": "Pink velvet, three piece",
+   "description": "Pink velvet captures the essence of timeless occasion dressing, with a classic brooch that adds to the beauty of the dress. Paired with a flowing pure organza dupatta.",
+   "details": [
+    "Shirt: premium Phoenix velvet",
+    "Trouser: premium Phoenix velvet",
+    "Dupatta: pure organza"
+   ],
+   "photos": [
+    "rose-royale-1.jpg",
+    "rose-royale-2.jpg",
+    "rose-royale-3.jpg",
+    "rose-royale-4.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "olive",
+   "name": "Olive",
+   "price": 25500,
+   "collection": "velvet",
+   "fabric": "Olive green velvet, three piece",
+   "description": "Olive green velvet captures the essence of timeless occasion dressing, with a classic brooch that adds to the beauty of the dress. Paired with a flowing pure organza dupatta.",
+   "details": [
+    "Shirt: premium Phoenix velvet",
+    "Trouser: premium Phoenix velvet",
+    "Dupatta: pure organza"
+   ],
+   "photos": [
+    "olive-1.jpg",
+    "olive-2.jpg",
+    "olive-3.jpg",
+    "olive-4.jpg",
+    "olive-5.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "cocoa",
+   "name": "Cocoa",
+   "price": 15000,
+   "collection": "everyday",
+   "fabric": "Chocolate brown, crinkle gauze, two piece",
+   "description": "Rich chocolate brown meets understated texture in this elongated silhouette. A knotted neckline adds a contemporary focal point without overwhelming its clean aesthetic. The long shirt is paired with matching trousers, effortless for workdays and everyday occasions. Perfect for winter.",
+   "details": [
+    "Shirt: textured crinkle double gauze",
+    "Trouser: textured crinkle double gauze"
+   ],
+   "photos": [
+    "cocoa-1.jpg",
+    "cocoa-2.jpg",
+    "cocoa-3.jpg",
+    "cocoa-4.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "dune",
+   "name": "Dune",
+   "price": 15000,
+   "collection": "everyday",
+   "fabric": "Greige, crinkle gauze, two piece",
+   "description": "Greige meets understated texture in this elongated silhouette. A knotted neckline adds a contemporary focal point without overwhelming its clean aesthetic. The long shirt is paired with matching trousers, effortless for workdays and everyday occasions. Perfect for winter.",
+   "details": [
+    "Shirt: textured crinkle double gauze",
+    "Trouser: textured crinkle double gauze"
+   ],
+   "photos": [
+    "dune-1.jpg",
+    "dune-2.jpg",
+    "dune-3.jpg",
+    "dune-4.jpg",
+    "dune-5.jpg",
+    "dune-6.jpg"
+   ],
+   "badge": null,
+   "customSize": true,
+   "featured": false
+  },
+  {
+   "slug": "nude-muse",
+   "name": "Nude Muse",
+   "price": 10500,
+   "collection": "everyday",
+   "fabric": "Skin, Irish pashmina, two piece",
+   "description": "Subtle and refined, the skin-tone ensemble brings a neutral elegance to everyday dressing. Crafted from premium Irish pashmina, with minimal button-down detailing that adds a thoughtful finishing touch: a beautiful choice for office wear, daily outings and understated elegance.",
+   "details": [
+    "Shirt: premium Irish pashmina",
+    "Trouser: premium Irish pashmina",
+    "Set price. Shirt alone Rs. 5,700, trouser alone Rs. 4,800: message us on WhatsApp"
+   ],
+   "photos": [
+    "nude-muse-1.jpg",
+    "nude-muse-2.jpg",
+    "nude-muse-3.jpg",
+    "nude-muse-4.jpg",
+    "nude-muse-5.jpg"
+   ],
+   "badge": null,
+   "customSize": false,
+   "featured": false
+  },
+  {
+   "slug": "amethyst",
+   "name": "Amethyst",
+   "price": 10500,
+   "collection": "everyday",
+   "fabric": "Purple, Irish pashmina, two piece",
+   "description": "Subtle and refined, the purple ensemble brings quiet colour to everyday dressing. Crafted from premium Irish pashmina, with minimal button-down detailing that adds a thoughtful finishing touch: a beautiful choice for office wear, daily outings and understated elegance.",
+   "details": [
+    "Shirt: premium Irish pashmina",
+    "Trouser: premium Irish pashmina",
+    "Set price. Shirt alone Rs. 5,700, trouser alone Rs. 4,800: message us on WhatsApp"
+   ],
+   "photos": [
+    "amethyst-1.jpg",
+    "amethyst-2.jpg",
+    "amethyst-3.jpg",
+    "amethyst-4.jpg"
+   ],
+   "badge": null,
+   "customSize": false,
+   "featured": false
+  },
+  {
+   "slug": "sylva",
+   "name": "Sylva",
+   "price": 10500,
+   "collection": "everyday",
+   "fabric": "Green, Irish pashmina, two piece",
+   "description": "Subtle and refined, the green ensemble brings a calm, natural tone to everyday dressing. Crafted from premium Irish pashmina, with minimal button-down detailing that adds a thoughtful finishing touch: a beautiful choice for office wear, daily outings and understated elegance.",
+   "details": [
+    "Shirt: premium Irish pashmina",
+    "Trouser: premium Irish pashmina",
+    "Set price. Shirt alone Rs. 5,700, trouser alone Rs. 4,800: message us on WhatsApp"
+   ],
+   "photos": [
+    "sylva-1.jpg",
+    "sylva-2.jpg",
+    "sylva-3.jpg",
+    "sylva-4.jpg"
+   ],
+   "badge": null,
+   "customSize": false,
+   "featured": false
+  }
+ ],
+ "slides": [
+  {
+   "image": "slide-1.jpg",
+   "hotY": 0.3,
+   "title": "The Georgette Edit",
+   "text": "Embroidery and cutwork, made to be photographed.",
+   "buttonText": "Shop georgette",
+   "collection": "georgette"
+  },
+  {
+   "image": "slide-2.jpg",
+   "hotY": 0.25,
+   "title": "Velvet Evenings",
+   "text": "Deep colour, soft pile and crystal detail.",
+   "buttonText": "Shop velvet",
+   "collection": "velvet"
+  },
+  {
+   "image": "slide-3.jpg",
+   "hotY": 0.25,
+   "title": "Rose Royale",
+   "text": "Pink velvet with a classic brooch.",
+   "buttonText": "Shop now",
+   "collection": "velvet"
+  }
+ ],
+ "looks": [
+  {
+   "image": "look-1.jpg",
+   "product": "elara"
+  },
+  {
+   "image": "look-2.jpg",
+   "product": "noire"
+  },
+  {
+   "image": "look-3.jpg",
+   "product": "rose-royale"
+  },
+  {
+   "image": "look-4.jpg",
+   "product": "lilac-haze"
+  },
+  {
+   "image": "look-5.jpg",
+   "product": "amethyst"
+  },
+  {
+   "image": "look-6.jpg",
+   "product": "olive"
+  }
+ ],
+ "story": "brand-block.jpg"
+}
