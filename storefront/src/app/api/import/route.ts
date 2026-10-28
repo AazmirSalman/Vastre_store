@@ -148,6 +148,16 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: true, step, slides: slides.length, looks: looks.length })
     }
 
+    if (step === 'cleanup') {
+      // A duplicate "Elara" made by hand before the import (web address 01-elara).
+      const dupes = await client.fetch<string[]>(`*[_type == "product" && slug.current == "01-elara"]._id`)
+      for (const id of dupes) {
+        await client.delete(id)
+        await client.delete(`drafts.${id}`).catch(() => null)
+      }
+      return NextResponse.json({ ok: true, step, deleted: dupes })
+    }
+
     return NextResponse.json({ error: 'Unknown step' }, { status: 400 })
   } catch (e) {
     return NextResponse.json({ error: e instanceof Error ? e.message : String(e) }, { status: 502 })
