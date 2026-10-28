@@ -5,6 +5,7 @@ import { SITE_URL } from '@/lib/config'
 import { formatPKR } from '@/lib/format'
 import { track } from '@/lib/pixel'
 import { waLink } from '@/lib/whatsapp'
+import { CUSTOM } from '@/lib/customSize'
 import { useCart } from './CartProvider'
 import { useStore } from './StoreProvider'
 
@@ -16,9 +17,11 @@ type Props = {
   sizes: string[]
   soldOutSizes: string[]
   soldOut: boolean
+  /** Extra charge for a made-to-measure size; 0 means not offered. */
+  customFee?: number
 }
 
-export function ProductBuy({ id, slug, name, price, sizes, soldOutSizes, soldOut }: Props) {
+export function ProductBuy({ id, slug, name, price: basePrice, sizes, soldOutSizes, soldOut, customFee = 0 }: Props) {
   const { add, openDrawer } = useCart()
   const { whatsappNumber } = useStore()
   const [size, setSize] = useState('')
@@ -28,7 +31,8 @@ export function ProductBuy({ id, slug, name, price, sizes, soldOutSizes, soldOut
   const [barVisible, setBarVisible] = useState(false)
   const addRef = useRef<HTMLButtonElement>(null)
   const sizeRef = useRef<HTMLFieldSetElement>(null)
-  const needsSize = sizes.length > 0
+  const needsSize = sizes.length > 0 || customFee > 0
+  const price = size === CUSTOM ? basePrice + customFee : basePrice
 
   // Show a sticky "Add to cart" bar on phones once the main button scrolls out of view.
   useEffect(() => {
@@ -95,7 +99,26 @@ export function ProductBuy({ id, slug, name, price, sizes, soldOutSizes, soldOut
                 </label>
               )
             })}
+            {customFee > 0 ? (
+              <label className="size">
+                <input
+                  type="radio"
+                  name="size"
+                  value={CUSTOM}
+                  checked={size === CUSTOM}
+                  onChange={() => {
+                    setSize(CUSTOM)
+                    setError('')
+                    setAdded(false)
+                  }}
+                />
+                <span>Custom</span>
+              </label>
+            ) : null}
           </div>
+          {size === CUSTOM ? (
+            <p className="hint">Made to your measurements, {formatPKR(customFee)} extra. You add your measurements at checkout.</p>
+          ) : null}
           {error ? (
             <p id="size-error" className="field-error" role="alert">
               {error}

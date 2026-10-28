@@ -14,7 +14,8 @@ export async function POST(req: Request) {
   const lines = parseCartLines(body?.items)
   if (!lines) return NextResponse.json({ error: 'Invalid cart' }, { status: 400 })
   try {
-    return NextResponse.json(await priceCart(lines), { headers: { 'Cache-Control': 'no-store' } })
+    const city = typeof body?.city === 'string' ? body.city.slice(0, 60) : undefined
+    return NextResponse.json(await priceCart(lines, city), { headers: { 'Cache-Control': 'no-store' } })
   } catch {
     return NextResponse.json({ error: 'Could not load prices' }, { status: 502 })
   }

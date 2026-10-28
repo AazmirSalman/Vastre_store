@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { normalizePhone } from '@/lib/format'
 import { isSameOrigin, readJson } from '@/lib/origin'
-import { parseCartLines, priceCart } from '@/lib/pricing'
+import { CUSTOM, parseCartLines, priceCart } from '@/lib/pricing'
 import { clientIp, isLimited } from '@/lib/ratelimit'
 
 export const dynamic = 'force-dynamic'
@@ -32,7 +32,8 @@ export async function POST(req: Request) {
   const phone = normalizePhone(text(c.phone, 30))
   const city = text(c.city, 60)
   const address = text(c.address, 300)
-  const notes = text(c.notes, 300)
+  const measurements = text(c.measurements, 400)
+  const notes = [measurements ? `Custom size measurements: ${measurements}` : '', text(c.notes, 300)].filter(Boolean).join(' | ')
 
   const fields: Record<string, string> = {}
   if (name.length < 2) fields.name = 'Enter your full name.'
@@ -45,10 +46,13 @@ export async function POST(req: Request) {
 
   const lines = parseCartLines(body.items)
   if (!lines) return NextResponse.json({ error: 'Your cart is empty or invalid.' }, { status: 400 })
+  if (lines.some((l) => l.size === CUSTOM) && measurements.length < 5) {
+    return NextResponse.json({ error: 'Check the highlighted fields.', fields: { measurements: 'Add your measurements for the custom size.' } }, { status: 422 })
+  }
 
   let quote
   try {
-    quote = await priceCart(lines)
+    quote = await priceCart(lines, city)
   } catch {
     return NextResponse.json({ error: 'Could not check prices. Please try again.' }, { status: 502 })
   }

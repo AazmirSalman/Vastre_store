@@ -97,6 +97,13 @@ export const product = defineType({
       hidden: ({ document }) => !((document?.sizes as string[] | undefined)?.length ?? 0),
     }),
     defineField({
+      name: 'customSize',
+      title: 'Offer a custom size',
+      type: 'boolean',
+      description: 'Shows a "Custom" size that adds the custom-size charge from Site settings. The customer adds measurements at checkout.',
+      initialValue: true,
+    }),
+    defineField({
       name: 'soldOut',
       title: 'Sold out',
       type: 'boolean',

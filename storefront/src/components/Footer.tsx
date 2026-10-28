@@ -10,7 +10,7 @@ export function Footer({ settings, collections }: { settings: Settings; collecti
       <div className="wrap">
         <div className="cols">
           <div>
-            <p className="mark">{settings.storeName}</p>
+            <p className="mark" role="img" aria-label={settings.storeName}><span className="logo" aria-hidden="true" /></p>
             <p className="foot__tag">{settings.tagline || "Ladies' eastern wear, delivered across Pakistan."}</p>
           </div>
           <nav aria-label="Shop">

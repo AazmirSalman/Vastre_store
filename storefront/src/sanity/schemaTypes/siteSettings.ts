@@ -124,11 +124,33 @@ export const siteSettings = defineType({
 
     defineField({
       name: 'deliveryFee',
-      title: 'Delivery charge (Rs.)',
+      title: 'Delivery charge (Rs.), or for all other cities',
       type: 'number',
       group: 'delivery',
       description: 'Enter 0 for free delivery on every order.',
       validation: (r) => r.required().integer().min(0),
+    }),
+    defineField({
+      name: 'localCity',
+      title: 'City with a different delivery charge',
+      type: 'string',
+      group: 'delivery',
+      description: 'Optional, e.g. "Lahore". Customers who type this city at checkout pay the charge below instead.',
+    }),
+    defineField({
+      name: 'localDeliveryFee',
+      title: 'Delivery charge in that city (Rs.)',
+      type: 'number',
+      group: 'delivery',
+      validation: (r) => r.integer().min(0),
+    }),
+    defineField({
+      name: 'customSizeFee',
+      title: 'Extra charge for a custom size (Rs.)',
+      type: 'number',
+      group: 'delivery',
+      description: 'Products with "Offer a custom size" turned on show a Custom option that adds this amount. Leave empty to switch custom sizes off everywhere.',
+      validation: (r) => r.integer().min(0),
     }),
     defineField({
       name: 'freeDeliveryOver',

@@ -7,19 +7,28 @@ import { readAttribution } from '@/lib/attribution'
 import { formatPKR, normalizePhone } from '@/lib/format'
 import { orderMessage } from '@/lib/orderMessage'
 import { track } from '@/lib/pixel'
+import { CUSTOM } from '@/lib/customSize'
 import type { Quote } from '@/lib/types'
 import { useQuote } from '@/lib/useQuote'
 import { waLink } from '@/lib/whatsapp'
 import { useCart } from './CartProvider'
 import { useStore } from './StoreProvider'
 
-type Fields = 'name' | 'phone' | 'city' | 'address'
+type Fields = 'name' | 'phone' | 'city' | 'address' | 'measurements'
 
 export function CheckoutForm() {
   const router = useRouter()
   const { lines, ready, clear } = useCart()
   const { whatsappNumber, codNote } = useStore()
-  const { quote, setQuote, error: quoteError } = useQuote(lines, ready)
+  const [cityInput, setCityInput] = useState('')
+  const [city, setCity] = useState('')
+  // Re-price shortly after the customer stops typing the city, because the city sets the delivery charge.
+  useEffect(() => {
+    const t = setTimeout(() => setCity(cityInput.trim()), 400)
+    return () => clearTimeout(t)
+  }, [cityInput])
+  const { quote, setQuote, error: quoteError } = useQuote(lines, ready, city)
+  const hasCustom = lines.some((l) => l.size === CUSTOM)
 
   const [errors, setErrors] = useState<Partial<Record<Fields, string>>>({})
   const [formError, setFormError] = useState('')
@@ -78,6 +87,7 @@ export function CheckoutForm() {
       city: String(fd.get('city') || '').trim(),
       address: String(fd.get('address') || '').trim(),
       notes: String(fd.get('notes') || '').trim(),
+      measurements: String(fd.get('measurements') || '').trim(),
     }
 
     const next: Partial<Record<Fields, string>> = {}
@@ -85,6 +95,7 @@ export function CheckoutForm() {
     if (!normalizePhone(customer.phone)) next.phone = 'Enter a Pakistani mobile number, like 0300 1234567.'
     if (customer.city.length < 2) next.city = 'Enter your city.'
     if (customer.address.length < 8) next.address = 'Enter your full delivery address, with house number and area.'
+    if (hasCustom && customer.measurements.length < 5) next.measurements = 'Add your measurements for the custom size.'
     setErrors(next)
     setFormError('')
     setNotConfigured(false)
@@ -102,7 +113,8 @@ export function CheckoutForm() {
           items: lines,
           customer,
           attribution: readAttribution(),
-          expectedTotal: quote.total,
+          // Only promise a total when it was priced for the city typed in.
+          expectedTotal: quote.cityKnown && city === customer.city ? quote.total : undefined,
           website: String(fd.get('website') || ''),
         }),
       })
@@ -165,8 +177,8 @@ export function CheckoutForm() {
 
         <div className="field">
           <label htmlFor="city">City</label>
-          <input id="city" name="city" type="text" autoComplete="address-level2" aria-invalid={!!errors.city} aria-describedby={errors.city ? 'city-err' : undefined} required />
-          {errors.city ? <p id="city-err" className="field-error">{errors.city}</p> : null}
+          <input id="city" name="city" type="text" autoComplete="address-level2" value={cityInput} onChange={(e) => setCityInput(e.target.value)} aria-invalid={!!errors.city} aria-describedby={errors.city ? 'city-err' : 'city-hint'} required />
+          {errors.city ? <p id="city-err" className="field-error">{errors.city}</p> : <p id="city-hint" className="hint">{quote.deliveryNote}.</p>}
         </div>
 
         <div className="field">
@@ -174,6 +186,14 @@ export function CheckoutForm() {
           <textarea id="address" name="address" rows={3} autoComplete="street-address" aria-invalid={!!errors.address} aria-describedby={errors.address ? 'address-err' : 'address-hint'} required />
           {errors.address ? <p id="address-err" className="field-error">{errors.address}</p> : <p id="address-hint" className="hint">House number, street, area and a nearby landmark.</p>}
         </div>
+
+        {hasCustom ? (
+          <div className="field">
+            <label htmlFor="measurements">Measurements for your custom size</label>
+            <textarea id="measurements" name="measurements" rows={3} aria-invalid={!!errors.measurements} aria-describedby={errors.measurements ? 'measurements-err' : 'measurements-hint'} required />
+            {errors.measurements ? <p id="measurements-err" className="field-error">{errors.measurements}</p> : <p id="measurements-hint" className="hint">In inches: chest, waist, hips, shirt length, sleeve length, trouser length. We will confirm them with you on WhatsApp.</p>}
+          </div>
+        ) : null}
 
         <div className="field">
           <label htmlFor="notes">Notes for us <span className="muted">(optional)</span></label>
@@ -199,7 +219,7 @@ export function CheckoutForm() {
         ) : null}
 
         <button type="submit" className="btn btn--block" disabled={busy}>
-          {busy ? 'Placing order…' : `Place order · ${formatPKR(quote.total)}`}
+          {busy ? 'Placing order…' : quote.cityKnown ? `Place order · ${formatPKR(quote.total)}` : 'Place order'}
         </button>
         {fallback && !notConfigured ? (
           <a className="ask-link" href={fallback} rel="noopener">Prefer WhatsApp? Send this order there instead</a>
@@ -218,8 +238,8 @@ export function CheckoutForm() {
         </ul>
         <dl>
           <div className="summary__row"><dt>Subtotal</dt><dd>{formatPKR(quote.subtotal)}</dd></div>
-          <div className="summary__row"><dt>Delivery</dt><dd>{quote.deliveryFee > 0 ? formatPKR(quote.deliveryFee) : 'Free'}</dd></div>
-          <div className="summary__row summary__total"><dt>Total</dt><dd>{formatPKR(quote.total)}</dd></div>
+          <div className="summary__row"><dt>Delivery</dt><dd>{!quote.cityKnown ? 'Enter your city' : quote.deliveryFee > 0 ? formatPKR(quote.deliveryFee) : 'Free'}</dd></div>
+          <div className="summary__row summary__total"><dt>Total</dt><dd>{quote.cityKnown ? formatPKR(quote.total) : `${formatPKR(quote.subtotal)} + delivery`}</dd></div>
         </dl>
         <Link href="/cart" className="ask-link">Edit cart</Link>
       </aside>

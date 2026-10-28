@@ -97,8 +97,9 @@ export function CartDrawer() {
         {quote && lines.length > 0 ? (
           <footer>
             <div className="tot"><span>Subtotal</span><span>{formatPKR(quote.subtotal)}</span></div>
-            <div className="tot"><span>Delivery</span><span>{quote.deliveryFee > 0 ? formatPKR(quote.deliveryFee) : 'Free'}</span></div>
-            <div className="tot tot--big"><span>Total, pay on delivery</span><span>{formatPKR(quote.total)}</span></div>
+            <div className="tot"><span>Delivery</span><span>{!quote.cityKnown ? 'At checkout' : quote.deliveryFee > 0 ? formatPKR(quote.deliveryFee) : 'Free'}</span></div>
+            {!quote.cityKnown ? <p className="dline__meta">{quote.deliveryNote}.</p> : null}
+            <div className="tot tot--big"><span>{quote.cityKnown ? 'Total, pay on delivery' : 'Subtotal, pay on delivery'}</span><span>{formatPKR(quote.cityKnown ? quote.total : quote.subtotal)}</span></div>
             {nudge !== null ? <p className="nudge">Add {formatPKR(nudge)} more for free delivery.</p> : null}
             {quote.allOk ? (
               <Link href="/checkout" className="btn btn--block">Checkout</Link>

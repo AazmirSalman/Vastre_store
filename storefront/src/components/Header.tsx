@@ -55,7 +55,7 @@ export function Header({ storeName, collections, instagram, codNote }: Props) {
           </nav>
         </div>
         <Link href="/" className="mark" aria-label={`${storeName}, home`}>
-          {storeName}
+          <span className="logo" aria-hidden="true" />
         </Link>
         <div className="bar__right">
           <button type="button" className="icon-btn" aria-label={`Open cart, ${items} ${items === 1 ? 'item' : 'items'}`} onClick={openDrawer}>
@@ -70,7 +70,7 @@ export function Header({ storeName, collections, instagram, codNote }: Props) {
 
       <div id="menu" className="menu" hidden={!open} role="dialog" aria-modal="true" aria-label="Menu">
         <div className="menu__top">
-          <span className="mark">{storeName}</span>
+          <span className="mark" role="img" aria-label={storeName}><span className="logo" aria-hidden="true" /></span>
           <button
             ref={closeBtn}
             type="button"

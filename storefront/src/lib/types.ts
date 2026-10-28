@@ -29,6 +29,8 @@ export type Product = {
   sizes?: string[]
   soldOut?: boolean
   soldOutSizes?: string[]
+  /** Offer a made-to-measure size for an extra charge. */
+  customSize?: boolean
   badge?: string
   featured?: boolean
   collections?: CollectionRef[]
@@ -64,6 +66,11 @@ export type Settings = {
   instagram?: string
   email?: string
   deliveryFee: number
+  /** Lower delivery charge for one city, e.g. Lahore. */
+  localCity?: string
+  localDeliveryFee?: number
+  /** Extra charge for a made-to-measure size. */
+  customSizeFee?: number
   freeDeliveryOver?: number
   deliveryTime?: string
   returnSummary?: string
@@ -99,4 +106,7 @@ export type Quote = {
   total: number
   freeDeliveryOver: number | null
   allOk: boolean
+  /** False until the customer's city is known and the city decides the delivery charge. */
+  cityKnown: boolean
+  deliveryNote: string
 }

@@ -13,8 +13,10 @@ export const SAMPLE_SETTINGS: Settings = {
   heroText: 'Lawn for the everyday, chiffon for the occasion, khaddar for the cold. Choose your piece and order in a minute.',
   heroButton: 'Shop new arrivals',
   instagram: 'vastre.pk',
-  deliveryFee: 250,
-  freeDeliveryOver: 6000,
+  deliveryFee: 550,
+  localCity: 'Lahore',
+  localDeliveryFee: 350,
+  customSizeFee: 10000,
   deliveryTime: 'Delivered in 3 to 5 working days',
   returnSummary: 'Size exchange within 7 days of delivery',
   codNote: 'Pay the rider in cash when your parcel arrives.',
@@ -47,7 +49,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
   },
   {
     _id: 'sample-p-2', name: 'Printed Lawn 2-Piece', slug: 'printed-lawn-2-piece', price: 3200,
-    fabric: 'Lawn, stitched', tone: 'teal', featured: true, sizes: STITCHED, soldOutSizes: ['S'], collections: [ref('lawn')],
+    fabric: 'Lawn, stitched', tone: 'teal', featured: true, customSize: true, sizes: STITCHED, soldOutSizes: ['S'], collections: [ref('lawn')],
     description: 'Sample product. Printed shirt with matching trouser.', details: ['Shirt and trouser', 'Stitched', 'Machine wash cold'], createdAt: '2026-09-28T00:00:00Z',
   },
   {

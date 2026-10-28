@@ -39,6 +39,17 @@ Open it, click the **...** menu at the bottom, choose **Unpublish**. To bring it
 
 Open a product and turn on **Show on the home page**. With fewer than four featured, the newest products fill the row.
 
+## Delivery charges by city and custom sizes
+
+In **Site settings**, **Delivery and returns**:
+
+- **Delivery charge, or for all other cities:** for example 550.
+- **City with a different delivery charge** and **Delivery charge in that city:** for example Lahore and 350. Customers who
+  type that city at checkout pay the lower charge. The cart says "At checkout" until they enter their city.
+- **Extra charge for a custom size:** for example 10000. Products with **Offer a custom size** turned on show a
+  **Custom** size. The price goes up by this amount and the customer must type measurements at checkout. The
+  measurements arrive in the Notes column of the orders Sheet.
+
 ## Change the big photos and sections on the home page
 
 Click **Site settings**, then the **Home page** tab.

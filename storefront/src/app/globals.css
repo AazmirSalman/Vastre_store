@@ -12,7 +12,8 @@
   --ink-2: #5e595f;
   --line: #dfdbd8;
   --field-line: #8b858c;
-  --accent: #7a1f3d;
+  --brand: #410304;
+  --accent: #6e1423;
   --on-ink: #fcfbfa;
   --error: #9b1c31;
 
@@ -280,11 +281,27 @@ main {
 }
 
 .mark {
-  font-family: var(--display);
-  font-size: 1.9rem;
-  letter-spacing: 0.04em;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   text-decoration: none;
+  color: var(--brand);
+}
+
+/* The VASTRÉ wordmark from her logo, drawn in the current text colour. */
+.logo {
+  display: block;
+  width: 128px;
+  aspect-ratio: 608 / 154;
+  background: currentColor;
+  -webkit-mask: url('/brand/wordmark.png') center / contain no-repeat;
+  mask: url('/brand/wordmark.png') center / contain no-repeat;
+}
+
+@media (min-width: 900px) {
+  .bar .logo {
+    width: 150px;
+  }
 }
 
 .count {
@@ -1601,7 +1618,7 @@ main {
 /* ---------- Footer ---------- */
 
 .site-foot {
-  background: var(--ink);
+  background: var(--brand);
   color: var(--on-ink);
   padding-block: 56px 28px;
 }
@@ -1612,7 +1629,11 @@ main {
 }
 
 .site-foot .mark {
-  font-size: 2.2rem;
+  color: var(--on-ink);
+}
+
+.site-foot .logo {
+  width: 170px;
 }
 
 .foot__tag {

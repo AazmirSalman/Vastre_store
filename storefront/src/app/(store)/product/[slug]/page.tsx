@@ -9,6 +9,7 @@ import { PixelEvent } from '@/components/Tracking'
 import { SITE_URL } from '@/lib/config'
 import { getProductBySlug, getProducts, getSettings } from '@/lib/data'
 import { discountPercent, formatPKR } from '@/lib/format'
+import { deliveryNote } from '@/lib/pricing'
 import { isSoldOut } from '@/lib/product'
 import { imageUrl } from '@/lib/sanity'
 
@@ -122,6 +123,7 @@ export default async function ProductPage({ params }: Props) {
             sizes={product.sizes ?? []}
             soldOutSizes={product.soldOutSizes ?? []}
             soldOut={out}
+            customFee={product.customSize ? settings.customSizeFee ?? 0 : 0}
           />
 
           <div className="acc">
@@ -155,7 +157,7 @@ export default async function ProductPage({ params }: Props) {
                   {settings.codNote ? <li>{settings.codNote}</li> : null}
                   {settings.deliveryTime ? <li>{settings.deliveryTime}</li> : null}
                   <li>
-                    {settings.deliveryFee > 0 ? `Delivery ${formatPKR(settings.deliveryFee)}` : 'Free delivery'}
+                    {deliveryNote(settings)}
                     {settings.freeDeliveryOver && settings.deliveryFee > 0 ? `, free over ${formatPKR(settings.freeDeliveryOver)}` : ''}
                   </li>
                   {settings.returnSummary ? <li>{settings.returnSummary}</li> : null}

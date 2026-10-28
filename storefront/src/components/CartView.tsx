@@ -82,8 +82,9 @@ export function CartView() {
         <h2>Summary</h2>
         <dl>
           <div className="summary__row"><dt>Subtotal</dt><dd>{formatPKR(quote.subtotal)}</dd></div>
-          <div className="summary__row"><dt>Delivery</dt><dd>{quote.deliveryFee > 0 ? formatPKR(quote.deliveryFee) : 'Free'}</dd></div>
-          <div className="summary__row summary__total"><dt>Total, pay on delivery</dt><dd>{formatPKR(quote.total)}</dd></div>
+          <div className="summary__row"><dt>Delivery</dt><dd>{!quote.cityKnown ? 'At checkout' : quote.deliveryFee > 0 ? formatPKR(quote.deliveryFee) : 'Free'}</dd></div>
+          <div className="summary__row summary__total"><dt>{quote.cityKnown ? 'Total, pay on delivery' : 'Subtotal, pay on delivery'}</dt><dd>{formatPKR(quote.cityKnown ? quote.total : quote.subtotal)}</dd></div>
+          {!quote.cityKnown ? <p className="hint">{quote.deliveryNote}.</p> : null}
         </dl>
         {nudge !== null ? <p className="nudge">Add {formatPKR(nudge)} more for free delivery.</p> : null}
         {quote.allOk ? (
