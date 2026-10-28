@@ -396,6 +396,7 @@ main {
 
 .hero {
   position: relative;
+  width: 100%;
   overflow: hidden;
   background: var(--ink);
   aspect-ratio: 4 / 5;
