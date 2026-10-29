@@ -60,7 +60,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSlider slides={slides} />
+      <HeroSlider slides={slides} video={{ phone: settings.heroVideo, wide: settings.heroVideoWide }} />
 
       {collections.length > 0 ? (
         <section className="section">

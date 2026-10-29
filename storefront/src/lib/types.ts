@@ -35,6 +35,8 @@ export type Product = {
   modelSize?: string
   badge?: string
   featured?: boolean
+  /** URL of a short muted clip shown in the gallery. */
+  video?: string
   collections?: CollectionRef[]
   createdAt?: string
   /** Sample data only: colour for the placeholder art. */
@@ -53,6 +55,9 @@ export type LookItem = { image?: Img; product?: { name: string; slug: string } |
 
 export type Settings = {
   heroSlides?: HeroSlide[]
+  /** Looping clip at the top of the home page: tall for phones, wide for laptops. */
+  heroVideo?: string
+  heroVideoWide?: string
   lookbook?: LookItem[]
   storyTitle?: string
   storyText?: string

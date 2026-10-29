@@ -7,6 +7,7 @@ const SETTINGS_QUERY = `*[_id == "siteSettings"][0]{
   storeName, tagline, announcement, heroHeadline, heroText,
   heroImage{ asset, hotspot, crop, alt }, heroButton,
   heroSlides[]{ title, text, buttonText, image{ asset, hotspot, crop, alt }, "collection": collection->{ title, "slug": slug.current } },
+  "heroVideo": heroVideo.asset->url, "heroVideoWide": heroVideoWide.asset->url,
   lookbook[]{ image{ asset, hotspot, crop, alt }, "product": product->{ name, "slug": slug.current } },
   storyTitle, storyText, storyImage{ asset, hotspot, crop, alt },
   whatsappNumber, instagram, email,
@@ -21,6 +22,7 @@ const PRODUCT_FIELDS = `
   _id, name, "slug": slug.current, price, compareAtPrice,
   images[]{ asset, hotspot, crop, alt },
   fabric, description, details, sizes, soldOut, soldOutSizes, customSize, modelSize, badge, featured,
+  "video": video.asset->url,
   "createdAt": _createdAt,
   "collections": collections[]->{ _id, title, "slug": slug.current }
 `

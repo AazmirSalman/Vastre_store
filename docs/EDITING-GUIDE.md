@@ -62,6 +62,12 @@ Click **Site settings**, then the **Home page** tab.
 
 Press **Publish**. The home page updates within about a minute.
 
+## Videos
+
+**On a product:** open the product, find **Video (optional)** under the photos, and upload a short MP4. It plays silently on a loop as the second item in the gallery. Keep files under 10 MB. Phone recordings are usually bigger, so send those to Aazmir to shrink first.
+
+**At the top of the home page:** **Site settings → Home page** has two fields, *Video at the top, for phones* (a tall clip) and *for laptops* (a wide clip). While a video is there, it replaces the slideshow photos, and the title and button come from the first slide. Remove the video to bring the slideshow back.
+
 ## Change delivery charge, banner, headline, WhatsApp number
 
 Click **Site settings**. The tabs across the top group everything:

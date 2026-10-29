@@ -439,6 +439,21 @@ main {
   background: linear-gradient(160deg, #3a2a32, #1d1a1e);
 }
 
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero__video.on {
+  opacity: 1;
+}
+
 .hero::after {
   content: '';
   position: absolute;
@@ -956,6 +971,38 @@ main {
 .gal .photo,
 .gal .art {
   height: 100%;
+}
+
+/* Product clip: same 3:4 frame as the photos, framed a little high so heads stay in view. */
+.pvid {
+  position: relative;
+  height: 100%;
+}
+
+.pvid video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display: block;
+}
+
+.pvid__btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(15, 12, 16, 0.55);
+  color: #fff;
+}
+
+.pvid__btn:hover {
+  background: rgba(15, 12, 16, 0.75);
 }
 
 .dots {

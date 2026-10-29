@@ -59,6 +59,14 @@ export const product = defineType({
       validation: (r) => r.required().min(1).max(8),
     }),
     defineField({
+      name: 'video',
+      title: 'Video (optional)',
+      type: 'file',
+      description:
+        'A short clip of this outfit. It plays silently on a loop next to the photos. Use an MP4 file under 10 MB; ask Aazmir to shrink bigger files first.',
+      options: { accept: 'video/mp4,video/webm' },
+    }),
+    defineField({
       name: 'collections',
       title: 'Collections',
       type: 'array',

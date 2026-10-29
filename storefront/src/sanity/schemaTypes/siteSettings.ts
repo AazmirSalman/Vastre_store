@@ -39,6 +39,23 @@ export const siteSettings = defineType({
     }),
 
     defineField({
+      name: 'heroVideo',
+      title: 'Video at the top, for phones (optional)',
+      type: 'file',
+      group: 'home',
+      description:
+        'A tall (vertical) MP4 that plays silently on a loop at the top of the home page. When a video is here it replaces the slideshow photos; remove it to bring the slideshow back. The title and button come from the first slide.',
+      options: { accept: 'video/mp4,video/webm' },
+    }),
+    defineField({
+      name: 'heroVideoWide',
+      title: 'Video at the top, for laptops (optional)',
+      type: 'file',
+      group: 'home',
+      description: 'A wide (landscape) version for big screens. If empty, laptops show the phone video.',
+      options: { accept: 'video/mp4,video/webm' },
+    }),
+    defineField({
       name: 'heroSlides',
       title: 'Big photos at the top (slideshow)',
       type: 'array',

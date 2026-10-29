@@ -5,6 +5,7 @@ import { ProductGrid } from '@/components/Catalogue'
 import { Gallery } from '@/components/Gallery'
 import { ProductBuy } from '@/components/ProductBuy'
 import { ProductImage } from '@/components/ProductImage'
+import { ProductVideo } from '@/components/ProductVideo'
 import { PixelEvent } from '@/components/Tracking'
 import { SITE_URL } from '@/lib/config'
 import { getProductBySlug, getProducts, getSettings } from '@/lib/data'
@@ -86,8 +87,13 @@ export default async function ProductPage({ params }: Props) {
       </nav>
 
       <div className="pdp">
-        <Gallery count={images.length}>
-          {images.map((img, i) => (
+        <Gallery count={images.length + (product.video ? 1 : 0)}>
+          {images.map((img, i) => [
+            i === 1 && product.video ? (
+              <figure key="video" className="fig--video">
+                <ProductVideo src={product.video} label={`${product.name}, video`} />
+              </figure>
+            ) : null,
             <figure key={i}>
               <ProductImage
                 img={img}
@@ -96,8 +102,13 @@ export default async function ProductPage({ params }: Props) {
                 priority={i === 0}
                 sizes="(min-width: 900px) 34vw, 86vw"
               />
+            </figure>,
+          ])}
+          {images.length < 2 && product.video ? (
+            <figure className="fig--video">
+              <ProductVideo src={product.video} label={`${product.name}, video`} />
             </figure>
-          ))}
+          ) : null}
         </Gallery>
 
         <div className="info">
