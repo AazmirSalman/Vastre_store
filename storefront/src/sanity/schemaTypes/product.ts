@@ -97,6 +97,12 @@ export const product = defineType({
       hidden: ({ document }) => !((document?.sizes as string[] | undefined)?.length ?? 0),
     }),
     defineField({
+      name: 'modelSize',
+      title: 'Size the model is wearing (only if different)',
+      type: 'string',
+      description: 'Leave empty to use the size from Site settings (Small).',
+    }),
+    defineField({
       name: 'customSize',
       title: 'Offer a custom size',
       type: 'boolean',

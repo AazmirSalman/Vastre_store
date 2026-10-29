@@ -10,7 +10,7 @@ const SETTINGS_QUERY = `*[_id == "siteSettings"][0]{
   lookbook[]{ image{ asset, hotspot, crop, alt }, "product": product->{ name, "slug": slug.current } },
   storyTitle, storyText, storyImage{ asset, hotspot, crop, alt },
   whatsappNumber, instagram, email,
-  deliveryFee, localCity, localDeliveryFee, customSizeFee, freeDeliveryOver, deliveryTime, returnSummary, codNote,
+  deliveryFee, localCity, localDeliveryFee, customSizeFee, modelSize, freeDeliveryOver, deliveryTime, returnSummary, codNote,
   sizeChart{ asset, hotspot, crop, alt },
   aboutText, deliveryPolicy, returnPolicy, privacyPolicy, metaPixelId
 }`
@@ -20,7 +20,7 @@ const COLLECTION_FIELDS = `_id, title, "slug": slug.current, description, image{
 const PRODUCT_FIELDS = `
   _id, name, "slug": slug.current, price, compareAtPrice,
   images[]{ asset, hotspot, crop, alt },
-  fabric, description, details, sizes, soldOut, soldOutSizes, customSize, badge, featured,
+  fabric, description, details, sizes, soldOut, soldOutSizes, customSize, modelSize, badge, featured,
   "createdAt": _createdAt,
   "collections": collections[]->{ _id, title, "slug": slug.current }
 `

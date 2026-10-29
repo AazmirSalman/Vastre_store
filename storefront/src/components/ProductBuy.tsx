@@ -76,7 +76,21 @@ export function ProductBuy({ id, slug, name, price: basePrice, sizes, soldOutSiz
     <div className="buy">
       {needsSize ? (
         <fieldset className="field-set" ref={sizeRef} aria-describedby={error ? 'size-error' : undefined}>
-          <legend>Size</legend>
+          <legend className="size-head">
+            <span>Size</span>
+            <button
+              type="button"
+              className="size-guide"
+              onClick={() => {
+                const d = document.getElementById('size-chart') as HTMLDetailsElement | null
+                if (!d) return
+                d.open = true
+                d.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
+              }}
+            >
+              Size guide
+            </button>
+          </legend>
           <div className="sizes">
             {sizes.map((s) => {
               const out = soldOutSizes.includes(s)

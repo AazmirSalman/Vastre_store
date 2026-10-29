@@ -31,6 +31,8 @@ export type Product = {
   soldOutSizes?: string[]
   /** Offer a made-to-measure size for an extra charge. */
   customSize?: boolean
+  /** Size the model wears in the photos, if different from the shop-wide setting. */
+  modelSize?: string
   badge?: string
   featured?: boolean
   collections?: CollectionRef[]
@@ -71,6 +73,8 @@ export type Settings = {
   localDeliveryFee?: number
   /** Extra charge for a made-to-measure size. */
   customSizeFee?: number
+  /** Size the model wears, shown on every product page. */
+  modelSize?: string
   freeDeliveryOver?: number
   deliveryTime?: string
   returnSummary?: string

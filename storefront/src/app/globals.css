@@ -6,11 +6,12 @@
    ========================================================================== */
 
 :root {
-  --paper: #fcfbfa;
-  --paper-2: #f2f0ee;
+  /* Pure white so the fabric colours show true; neutral grey (no warm tint) for tinted sections. */
+  --paper: #ffffff;
+  --paper-2: #f5f5f5;
   --ink: #1d1a1e;
   --ink-2: #5e595f;
-  --line: #dfdbd8;
+  --line: #e3e3e3;
   --field-line: #8b858c;
   --brand: #410304;
   --accent: #6e1423;
@@ -264,8 +265,10 @@ main {
 
 .nav {
   display: none;
-  gap: 28px;
-  font-size: 0.95rem;
+  gap: 26px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .nav a {
@@ -354,8 +357,9 @@ main {
 
 .menu__link {
   font-family: var(--display);
-  font-size: 2rem;
-  padding: 8px 0;
+  font-size: 1.35rem;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
   text-decoration: none;
 }
 
@@ -1679,4 +1683,34 @@ main {
   .site-foot .cols {
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
   }
+}
+
+/* Size guide link and model size note on product pages. */
+.size-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.size-guide {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.88rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--ink-2);
+}
+
+.model-note {
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  margin-top: 8px;
+}
+
+.chart-img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
 }

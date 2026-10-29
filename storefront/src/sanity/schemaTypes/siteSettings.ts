@@ -153,6 +153,13 @@ export const siteSettings = defineType({
       validation: (r) => r.integer().min(0),
     }),
     defineField({
+      name: 'modelSize',
+      title: 'Size the model is wearing',
+      type: 'string',
+      group: 'delivery',
+      description: 'Shown on every product page as "Model is wearing size …". Leave empty for Small.',
+    }),
+    defineField({
       name: 'freeDeliveryOver',
       title: 'Free delivery on orders above (Rs.)',
       type: 'number',
@@ -168,7 +175,7 @@ export const siteSettings = defineType({
       title: 'Size chart image',
       type: 'image',
       group: 'delivery',
-      description: 'A picture of your size chart with measurements. It appears on product pages that have sizes.',
+      description: 'A picture of your size chart with measurements. It appears on product pages that have sizes. Leave empty to use the chart built into the site.',
       fields: [defineField({ name: 'alt', title: 'Short description', type: 'string' })],
     }),
 

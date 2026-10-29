@@ -114,6 +114,7 @@ export default async function ProductPage({ params }: Props) {
               formatPKR(product.price)
             )}
           </p>
+          <p className="model-note">Model is wearing size {product.modelSize || settings.modelSize || 'Small'}.</p>
 
           <ProductBuy
             id={product._id}
@@ -142,11 +143,16 @@ export default async function ProductPage({ params }: Props) {
                 </div>
               </details>
             ) : null}
-            {hasSizes && settings.sizeChart ? (
-              <details>
+            {hasSizes ? (
+              <details id="size-chart">
                 <summary>Size chart</summary>
                 <div className="acc__body">
-                  <ProductImage img={settings.sizeChart} alt={settings.sizeChart.alt || 'Size chart'} sizes="(min-width: 900px) 34vw, 90vw" className="chart" />
+                  {settings.sizeChart ? (
+                    <ProductImage img={settings.sizeChart} alt={settings.sizeChart.alt || 'Size chart'} sizes="(min-width: 900px) 34vw, 90vw" className="chart" />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="chart-img" src="/brand/size-chart.jpg" alt="Vastré size chart: shirt shoulder, bust, hip and sleeve length, and trouser hip, thigh, bottom and length, in inches, for sizes XS to L" width={1024} height={1536} loading="lazy" />
+                  )}
                 </div>
               </details>
             ) : null}
