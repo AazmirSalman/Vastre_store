@@ -12,3 +12,11 @@
 # The Next.js runtime: turns the build into Netlify functions and routes.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# One address for the shop: the old Netlify address forwards to vastre.pk,
+# so Google, the Meta Pixel and customers all see a single site.
+[[redirects]]
+  from = "https://vastre2.netlify.app/*"
+  to = "https://vastre.pk/:splat"
+  status = 301
+  force = true

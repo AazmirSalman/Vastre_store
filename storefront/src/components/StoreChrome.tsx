@@ -27,6 +27,7 @@ export async function StoreChrome({ children }: { children: ReactNode }) {
           whatsappNumber: settings.whatsappNumber || '',
           instagram: settings.instagram,
           codNote: settings.codNote,
+          bank: settings.bank,
           deliveryTime: settings.deliveryTime,
           returnSummary: settings.returnSummary,
         }}

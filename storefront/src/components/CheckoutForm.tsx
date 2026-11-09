@@ -11,6 +11,7 @@ import { CUSTOM } from '@/lib/customSize'
 import type { Quote } from '@/lib/types'
 import { useQuote } from '@/lib/useQuote'
 import { waLink } from '@/lib/whatsapp'
+import { BankDetails } from './BankDetails'
 import { useCart } from './CartProvider'
 import { useStore } from './StoreProvider'
 
@@ -19,7 +20,7 @@ type Fields = 'name' | 'phone' | 'city' | 'address' | 'measurements'
 export function CheckoutForm() {
   const router = useRouter()
   const { lines, ready, clear } = useCart()
-  const { whatsappNumber, codNote } = useStore()
+  const { whatsappNumber, codNote, bank } = useStore()
   const [cityInput, setCityInput] = useState('')
   const [city, setCity] = useState('')
   // Re-price shortly after the customer stops typing the city, because the city sets the delivery charge.
@@ -33,6 +34,8 @@ export function CheckoutForm() {
   const [errors, setErrors] = useState<Partial<Record<Fields, string>>>({})
   const [formError, setFormError] = useState('')
   const [notConfigured, setNotConfigured] = useState(false)
+  // The customer's details, kept so the WhatsApp fallback can carry them if saving the order fails.
+  const [typed, setTyped] = useState<{ name: string; phone: string; city: string; address: string } | null>(null)
   const [busy, setBusy] = useState(false)
   const [done, setDone] = useState(false)
   const summaryRef = useRef<HTMLDivElement>(null)
@@ -104,6 +107,7 @@ export function CheckoutForm() {
       return
     }
 
+    setTyped({ name: customer.name, phone: normalizePhone(customer.phone) || customer.phone, city: customer.city, address: customer.address })
     setBusy(true)
     try {
       const res = await fetch('/api/order', {
@@ -142,7 +146,7 @@ export function CheckoutForm() {
       } else if (res.status === 409) {
         if (data.quote) setQuote(data.quote)
         setFormError(data.error || 'Your cart changed. Review it and try again.')
-      } else if (res.status === 503) {
+      } else if (res.status === 503 || (res.status === 502 && (data as { fallback?: boolean }).fallback)) {
         setNotConfigured(true)
       } else {
         setFormError(data.error || 'We could not place your order. Please try again, or order on WhatsApp.')
@@ -154,7 +158,7 @@ export function CheckoutForm() {
     }
   }
 
-  const fallback = waLink(whatsappNumber, orderMessage({ quote }))
+  const fallback = waLink(whatsappNumber, orderMessage({ quote, customer: typed ?? undefined }))
 
   return (
     <div className="checkout">
@@ -208,12 +212,14 @@ export function CheckoutForm() {
 
         <div className="payment">
           <h2>Payment</h2>
-          <p><strong>Cash on delivery.</strong> {codNote || 'Pay the rider in cash when your parcel arrives.'}</p>
+          <p><strong>Bank transfer, 100% in advance.</strong> {codNote || 'Every piece is made to order, so payment is taken in advance.'}</p>
+          <p className="hint">Place your order first. You will get your order number and these details again, with a button to send us the payment screenshot on WhatsApp.</p>
+          <BankDetails bank={bank} />
         </div>
 
         {notConfigured ? (
           <div className="notice" role="alert">
-            <p>Online ordering is not switched on for this shop yet. You can still order: send your cart on WhatsApp and we will confirm it.</p>
+            <p>We could not save your order online just now. Your order is not lost: send it to us on WhatsApp and we will confirm it.</p>
             {fallback ? <a className="btn btn--block" href={fallback} rel="noopener">Send order on WhatsApp</a> : null}
           </div>
         ) : null}

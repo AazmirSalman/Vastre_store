@@ -458,8 +458,9 @@ main {
   content: '';
   position: absolute;
   inset: auto 0 0;
-  height: 60%;
-  background: linear-gradient(to top, rgba(15, 12, 16, 0.72), rgba(15, 12, 16, 0));
+  height: 50%;
+  /* Just enough shade for the white headline; kept light so the fabric colours stay true. */
+  background: linear-gradient(to top, rgba(15, 12, 16, 0.5), rgba(15, 12, 16, 0));
   pointer-events: none;
 }
 
@@ -1760,4 +1761,100 @@ main {
   width: 100%;
   max-width: 520px;
   height: auto;
+}
+
+/* ---------- Advance payment: bank details and confirmation steps ---------- */
+
+.payment p + p {
+  margin-top: 6px;
+}
+
+.bank {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  width: 100%;
+}
+
+.bank__row {
+  display: grid;
+  gap: 2px;
+}
+
+.bank__row dt {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.bank__row dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bank__val {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.bank__copy {
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: 500 0.82rem var(--body);
+  cursor: pointer;
+}
+
+.bank__copy:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.paysteps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+
+.paysteps > li {
+  counter-increment: step;
+  position: relative;
+  padding: 16px 16px 16px 56px;
+  background: var(--paper-2);
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.paysteps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font: 600 0.9rem var(--body);
+}
+
+.paysteps h2 {
+  font: 600 1.05rem var(--body);
 }

@@ -1,12 +1,14 @@
 'use client'
 
 import { createContext, useContext, type ReactNode } from 'react'
+import type { BankDetails } from '@/lib/types'
 
 export type StoreInfo = {
   storeName: string
   whatsappNumber: string
   instagram?: string
   codNote?: string
+  bank?: BankDetails
   deliveryTime?: string
   returnSummary?: string
 }

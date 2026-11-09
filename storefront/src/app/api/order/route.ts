@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { normalizePhone } from '@/lib/format'
 import { isSameOrigin, readJson } from '@/lib/origin'
 import { CUSTOM, parseCartLines, priceCart } from '@/lib/pricing'
+import { alertOwner, ordersEnabled, saveOrder, sendWebhook, type OrderInput } from '@/lib/orders'
 import { clientIp, isLimited } from '@/lib/ratelimit'
 
 export const dynamic = 'force-dynamic'
@@ -33,7 +34,6 @@ export async function POST(req: Request) {
   const city = text(c.city, 60)
   const address = text(c.address, 300)
   const measurements = text(c.measurements, 400)
-  const notes = [measurements ? `Custom size measurements: ${measurements}` : '', text(c.notes, 300)].filter(Boolean).join(' | ')
 
   const fields: Record<string, string> = {}
   if (name.length < 2) fields.name = 'Enter your full name.'
@@ -63,12 +63,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Prices were updated. Check your total and place the order again.', quote }, { status: 409 })
   }
 
-  const url = process.env.ORDERS_WEBHOOK_URL
-  if (!url) {
+  if (!ordersEnabled()) {
     return NextResponse.json({ error: 'not_configured' }, { status: 503 })
   }
 
-  // Only orders that would reach the sheet count. Many customers share one mobile-carrier IP in Pakistan,
+  // Only orders that would be saved count. Many customers share one mobile-carrier IP in Pakistan,
   // so the limit is generous and rejected or mistyped attempts never use it up.
   if (isLimited(`order:${clientIp(req.headers)}`, 12, 10 * 60_000)) {
     return NextResponse.json({ error: 'Too many orders from this connection. Please wait a few minutes.' }, { status: 429 })
@@ -82,37 +81,21 @@ export async function POST(req: Request) {
   }
 
   const ref = makeRef()
-  const payload = {
-    secret: process.env.ORDERS_WEBHOOK_SECRET || '',
+  const order: OrderInput = {
     ref,
-    customer: { name, phone, city, address, notes },
-    items: quote.lines.map((l) => ({ name: l.name, size: l.size || '', qty: l.qty, unitPrice: l.unitPrice, lineTotal: l.lineTotal })),
-    subtotal: quote.subtotal,
-    deliveryFee: quote.deliveryFee,
-    total: quote.total,
-    paymentMethod: 'Cash on delivery',
+    customer: { name, phone: phone || '', city, address, measurements, notes: text(c.notes, 300) },
+    quote,
     attribution,
+    paymentMethod: 'Bank transfer, 100% advance',
   }
 
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      redirect: 'follow',
-      signal: AbortSignal.timeout(15_000),
-    })
-    const raw = await res.text()
-    let ok = false
-    try {
-      ok = JSON.parse(raw).ok === true
-    } catch {
-      ok = false
-    }
-    if (!res.ok || !ok) throw new Error('webhook rejected')
+    await saveOrder(order)
   } catch {
-    return NextResponse.json({ error: 'We could not save your order. Please try again, or order on WhatsApp.' }, { status: 502 })
+    await alertOwner(order, false)
+    return NextResponse.json({ error: 'We could not save your order. Please send it to us on WhatsApp instead.', fallback: true }, { status: 502 })
   }
+  await Promise.all([alertOwner(order, true), sendWebhook(order)])
 
   return NextResponse.json({ ref, quote })
 }

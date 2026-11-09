@@ -53,6 +53,9 @@ export type HeroSlide = {
 
 export type LookItem = { image?: Img; product?: { name: string; slug: string } | null }
 
+/** Where customers send the advance payment. */
+export type BankDetails = { bankName?: string; accountTitle?: string; accountNumber?: string; iban?: string; branch?: string }
+
 export type Settings = {
   heroSlides?: HeroSlide[]
   /** Looping clip at the top of the home page: tall for phones, wide for laptops. */
@@ -83,7 +86,9 @@ export type Settings = {
   freeDeliveryOver?: number
   deliveryTime?: string
   returnSummary?: string
+  /** Payment note shown on product pages, menu and checkout (field kept as codNote for old data). */
   codNote?: string
+  bank?: BankDetails
   sizeChart?: Img
   aboutText?: string
   deliveryPolicy?: string

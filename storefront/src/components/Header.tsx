@@ -93,7 +93,7 @@ export function Header({ storeName, collections, instagram, codNote }: Props) {
           </Link>
         ))}
         <p className="menu__sub">
-          {codNote || 'Cash on delivery across Pakistan.'}
+          {codNote || 'Made to order. Delivery across Pakistan.'}
           {instagram ? (
             <>
               <br />

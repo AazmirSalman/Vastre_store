@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: title, template: `%s | ${s.storeName}` },
-    description: s.heroText || `${s.storeName}${s.tagline ? ': ' + s.tagline : ''}. Cash on delivery.`,
+    description: s.heroText || `${s.storeName}${s.tagline ? ': ' + s.tagline : ''}. Made to order, delivered across Pakistan.`,
     openGraph: { siteName: s.storeName, type: 'website', locale: 'en_PK' },
     // Never let the sample-data preview get indexed by search engines.
     robots: IS_SAMPLE ? { index: false, follow: false } : undefined,

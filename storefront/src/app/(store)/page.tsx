@@ -53,7 +53,7 @@ export default async function HomePage() {
   const ig = settings.instagram?.replace(/^@/, '')
 
   const facts = [
-    { title: 'Pay on delivery', text: settings.codNote },
+    { title: 'Made to order', text: settings.codNote },
     { title: 'Delivery', text: settings.deliveryTime },
     { title: 'Exchanges', text: settings.returnSummary },
   ].filter((t) => t.text)

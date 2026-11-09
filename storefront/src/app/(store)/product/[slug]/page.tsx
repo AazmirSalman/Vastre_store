@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const p = await getProductBySlug(slug)
   if (!p) return {}
-  const description = p.description?.slice(0, 160) || `${p.name}${p.fabric ? ', ' + p.fabric : ''}. ${formatPKR(p.price)}. Cash on delivery.`
+  const description = p.description?.slice(0, 160) || `${p.name}${p.fabric ? ', ' + p.fabric : ''}. ${formatPKR(p.price)}. Made to order, delivered across Pakistan.`
   const og = p.images?.[0] ? [{ url: imageUrl(p.images[0], 1200, 630), width: 1200, height: 630, alt: p.name }] : undefined
   return { title: p.name, description, openGraph: { title: p.name, description, images: og } }
 }

@@ -62,6 +62,19 @@ Click **Site settings**, then the **Home page** tab.
 
 Press **Publish**. The home page updates within about a minute.
 
+## Orders
+
+Every order placed on the website lands in **Orders** at the top of the panel, and your phone rings with an alert (ntfy app).
+
+1. **Awaiting payment**: the customer has ordered and has been shown your bank details. Wait for their payment screenshot on WhatsApp.
+2. When the screenshot arrives and the money is in your account, open the order, set **Status → Paid** and fill **Payment received on**. Press **Publish**.
+3. Move it to **In production** while it is being made, then **Shipped** (add the courier and tracking number), then **Delivered**.
+4. If a customer cancels, set **Cancelled**. Don't delete orders; they are your sales record.
+
+Customer details, items and totals are locked so they can't be changed by accident. Use **Your notes** for anything else.
+
+**Bank details** shown to customers are in **Site settings → Payment**. Change them there if the account ever changes.
+
 ## Videos
 
 **On a product:** open the product, find **Video (optional)** under the photos, and upload a short MP4. It plays silently on a loop as the second item in the gallery. Keep files under 10 MB. Phone recordings are usually bigger, so send those to Aazmir to shrink first.

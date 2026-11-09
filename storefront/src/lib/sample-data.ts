@@ -8,7 +8,7 @@ import type { Collection, Product, Settings } from './types'
 export const SAMPLE_SETTINGS: Settings = {
   storeName: 'Vastre',
   tagline: "Ladies' eastern wear",
-  announcement: 'Cash on delivery across Pakistan',
+  announcement: 'Made to order · Delivery across Pakistan',
   heroHeadline: 'Eastern wear, cut for the way you wear it',
   heroText: 'Lawn for the everyday, chiffon for the occasion, khaddar for the cold. Choose your piece and order in a minute.',
   heroButton: 'Shop new arrivals',
@@ -19,7 +19,7 @@ export const SAMPLE_SETTINGS: Settings = {
   customSizeFee: 10000,
   deliveryTime: 'Delivered in 3 to 5 working days',
   returnSummary: 'Size exchange within 7 days of delivery',
-  codNote: 'Pay the rider in cash when your parcel arrives.',
+  codNote: 'Every piece is made to order, so payment is taken in advance by bank transfer.',
   aboutText:
     'Vastre makes ladies’ eastern wear for Pakistan. This is sample text. Replace it in the Studio under Site settings.',
   deliveryPolicy: 'Sample text. Add your delivery policy in the Studio under Site settings.',

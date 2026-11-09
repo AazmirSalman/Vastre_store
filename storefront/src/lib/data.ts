@@ -11,7 +11,7 @@ const SETTINGS_QUERY = `*[_id == "siteSettings"][0]{
   lookbook[]{ image{ asset, hotspot, crop, alt }, "product": product->{ name, "slug": slug.current } },
   storyTitle, storyText, storyImage{ asset, hotspot, crop, alt },
   whatsappNumber, instagram, email,
-  deliveryFee, localCity, localDeliveryFee, customSizeFee, modelSize, freeDeliveryOver, deliveryTime, returnSummary, codNote,
+  deliveryFee, localCity, localDeliveryFee, customSizeFee, modelSize, freeDeliveryOver, deliveryTime, returnSummary, codNote, bank,
   sizeChart{ asset, hotspot, crop, alt },
   aboutText, deliveryPolicy, returnPolicy, privacyPolicy, metaPixelId
 }`
