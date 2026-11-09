@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
+// Matches the brand's size chart (XS, S, M, ML, L).
+const SIZES = ['XS', 'S', 'M', 'ML', 'L']
 
 export const product = defineType({
   name: 'product',
