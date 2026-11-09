@@ -69,7 +69,8 @@ Every order placed on the website lands in **Orders** at the top of the panel, a
 1. **Awaiting payment**: the customer has ordered and has been shown your bank details. Wait for their payment screenshot on WhatsApp.
 2. When the screenshot arrives and the money is in your account, open the order, set **Status → Paid** and fill **Payment received on**. Press **Publish**.
 3. Move it to **In production** while it is being made, then **Shipped** (add the courier and tracking number), then **Delivered**.
-4. If a customer cancels, set **Cancelled**. Don't delete orders; they are your sales record.
+4. **Unpaid orders:** within 1 hour of a new order, send the customer the `/remind` quick reply on WhatsApp. If there is still no payment 48 hours after the order, set it to **Cancelled** (customers are told this on the confirmation page).
+5. If a customer cancels, set **Cancelled**. Don't delete orders; they are your sales record.
 
 Customer details, items and totals are locked so they can't be changed by accident. Use **Your notes** for anything else.
 

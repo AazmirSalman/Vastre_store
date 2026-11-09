@@ -64,7 +64,7 @@ export function OrderConfirmed() {
     <div className="confirmed">
       <p className="confirmed__ref">Order {order.ref}</p>
       <h1>Thank you, {order.customer.name.split(' ')[0]}. Your order is placed.</h1>
-      <p className="lede">One step left: pay in advance so we can start making your piece.</p>
+      <p className="lede">One step left: pay in advance so we can start making your piece. Your order is reserved for 48 hours; unpaid orders are cancelled after that.</p>
 
       <ol className="paysteps">
         <li>
