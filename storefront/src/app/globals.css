@@ -1858,3 +1858,32 @@ main {
 .paysteps h2 {
   font: 600 1.05rem var(--body);
 }
+
+/* ---------- Product page: buy actions, WhatsApp, reassurance ---------- */
+
+.buy__actions {
+  display: grid;
+  gap: 10px;
+}
+
+.btn--wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: #1a7f4b;
+  border-color: #1a7f4b;
+}
+
+.btn--wa:hover {
+  background: #1a7f4b;
+  color: #fff;
+}
+
+.assure {
+  margin-top: 6px;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}

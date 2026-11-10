@@ -126,6 +126,7 @@ export default async function ProductPage({ params }: Props) {
             )}
           </p>
           <p className="model-note">Model is wearing size {product.modelSize || settings.modelSize || 'Small'}.</p>
+          <p className="assure">Made to order for you{product.customSize && (settings.customSizeFee ?? 0) > 0 ? ' · Custom sizing available' : ''} · Delivered across Pakistan</p>
 
           <ProductBuy
             id={product._id}

@@ -213,7 +213,15 @@ export function CheckoutForm() {
         <div className="payment">
           <h2>Payment</h2>
           <p><strong>Bank transfer, 100% in advance.</strong> {codNote || 'Every piece is made to order, so payment is taken in advance.'}</p>
-          <p className="hint">Place your order first. You will get your order number and these details again, with a button to send us the payment screenshot on WhatsApp.</p>
+          <p className="hint">Place your order first. It is reserved for you for 48 hours, and you will get your order number and these details again, with a button to send us the payment screenshot on WhatsApp.</p>
+          {whatsappNumber ? (
+            <p className="hint">
+              Questions before you pay?{' '}
+              <a href={waLink(whatsappNumber, 'Assalam o Alaikum! I have a question before placing my order.') ?? undefined} rel="noopener">
+                Chat with us on WhatsApp
+              </a>
+            </p>
+          ) : null}
           <BankDetails bank={bank} />
         </div>
 
