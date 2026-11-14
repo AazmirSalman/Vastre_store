@@ -26,7 +26,8 @@ export const structure: StructureResolver = (S) =>
             .id('orders-menu')
             .title('Orders')
             .items([
-              orderList(S, 'orders-awaiting', 'Awaiting payment', '(status == "awaiting_payment" || !defined(status))'),
+              orderList(S, 'orders-new', 'New: call to confirm', '(status == "new" || !defined(status))'),
+              orderList(S, 'orders-awaiting', 'Confirmed, awaiting payment', 'status == "awaiting_payment"'),
               orderList(S, 'orders-make', 'To make (paid / in production)', 'status in ["paid", "in_production"]'),
               orderList(S, 'orders-shipped', 'Shipped', 'status == "shipped"'),
               orderList(S, 'orders-delivered', 'Delivered', 'status == "delivered"'),

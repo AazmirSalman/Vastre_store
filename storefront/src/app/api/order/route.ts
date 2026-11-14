@@ -86,7 +86,7 @@ export async function POST(req: Request) {
     customer: { name, phone: phone || '', city, address, measurements, notes: text(c.notes, 300) },
     quote,
     attribution,
-    paymentMethod: 'Bank transfer, 100% advance',
+    paymentMethod: 'To be confirmed on call',
   }
 
   try {

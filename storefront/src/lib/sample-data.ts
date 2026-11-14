@@ -19,7 +19,7 @@ export const SAMPLE_SETTINGS: Settings = {
   customSizeFee: 10000,
   deliveryTime: 'Delivered in 3 to 5 working days',
   returnSummary: 'Size exchange within 7 days of delivery',
-  codNote: 'Every piece is made to order, so payment is taken in advance by bank transfer.',
+  codNote: 'Every piece is made to order for you. We call to confirm every order before we begin.',
   aboutText:
     'Vastre makes ladies’ eastern wear for Pakistan. This is sample text. Replace it in the Studio under Site settings.',
   deliveryPolicy: 'Sample text. Add your delivery policy in the Studio under Site settings.',

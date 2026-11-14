@@ -66,15 +66,12 @@ Press **Publish**. The home page updates within about a minute.
 
 Every order placed on the website lands in **Orders** at the top of the panel, and your phone rings with an alert (ntfy app).
 
-1. **Awaiting payment**: the customer has ordered and has been shown your bank details. Wait for their payment screenshot on WhatsApp.
-2. When the screenshot arrives and the money is in your account, open the order, set **Status → Paid** and fill **Payment received on**. Press **Publish**.
-3. Move it to **In production** while it is being made, then **Shipped** (add the courier and tracking number), then **Delivered**.
-4. **Unpaid orders:** within 1 hour of a new order, send the customer the `/remind` quick reply on WhatsApp. If there is still no payment 48 hours after the order, set it to **Cancelled** (customers are told this on the confirmation page).
-5. If a customer cancels, set **Cancelled**. Don't delete orders; they are your sales record.
+1. **New: call to confirm.** Call the customer within the hour. Confirm the piece, size and address, and explain payment (50% advance, the rest before dispatch). Then set **Status → Confirmed, awaiting payment** and **Publish**.
+2. When the advance is in your account, set **Paid** and fill **Payment received on**.
+3. Move it to **In production**, then **Shipped** (add the courier and tracking number), then **Delivered**.
+4. If a customer cancels or can't be reached after 2 tries, set **Cancelled**. Don't delete orders; they are your sales record.
 
-Customer details, items and totals are locked so they can't be changed by accident. Use **Your notes** for anything else.
-
-**Bank details** shown to customers are in **Site settings → Payment**. Change them there if the account ever changes.
+The website does not show bank details or payment terms; payment is agreed on the call. Customer details, items and totals are locked so they can't be changed by accident. Use **Your notes** for anything else.
 
 ## Videos
 

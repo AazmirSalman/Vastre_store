@@ -6,7 +6,8 @@ import { defineField, defineType } from 'sanity'
  * them private: the store's data is public, but anything with a dot in its ID needs a login.
  */
 export const ORDER_STATUSES = [
-  { title: 'Awaiting payment', value: 'awaiting_payment' },
+  { title: 'New: call to confirm', value: 'new' },
+  { title: 'Confirmed, awaiting payment', value: 'awaiting_payment' },
   { title: 'Paid', value: 'paid' },
   { title: 'In production', value: 'in_production' },
   { title: 'Shipped', value: 'shipped' },
@@ -33,8 +34,8 @@ export const order = defineType({
       type: 'string',
       group: 'manage',
       options: { list: ORDER_STATUSES, layout: 'radio' },
-      initialValue: 'awaiting_payment',
-      description: 'Move the order along as it happens: Paid when the payment screenshot is checked, then In production, Shipped, Delivered.',
+      initialValue: 'new',
+      description: 'New orders: call the customer first. Then move it along: Confirmed (awaiting payment), Paid, In production, Shipped, Delivered.',
     }),
     defineField({ name: 'paidAt', title: 'Payment received on', type: 'date', group: 'manage' }),
     defineField({ name: 'courier', title: 'Courier', type: 'string', group: 'manage', options: { list: ['TCS', 'Leopards', 'PostEx', 'Other'] } }),

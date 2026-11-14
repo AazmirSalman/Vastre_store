@@ -11,7 +11,6 @@ import { CUSTOM } from '@/lib/customSize'
 import type { Quote } from '@/lib/types'
 import { useQuote } from '@/lib/useQuote'
 import { waLink } from '@/lib/whatsapp'
-import { BankDetails } from './BankDetails'
 import { useCart } from './CartProvider'
 import { useStore } from './StoreProvider'
 
@@ -20,7 +19,7 @@ type Fields = 'name' | 'phone' | 'city' | 'address' | 'measurements'
 export function CheckoutForm() {
   const router = useRouter()
   const { lines, ready, clear } = useCart()
-  const { whatsappNumber, codNote, bank } = useStore()
+  const { whatsappNumber } = useStore()
   const [cityInput, setCityInput] = useState('')
   const [city, setCity] = useState('')
   // Re-price shortly after the customer stops typing the city, because the city sets the delivery charge.
@@ -211,18 +210,16 @@ export function CheckoutForm() {
         </div>
 
         <div className="payment">
-          <h2>Payment</h2>
-          <p><strong>Bank transfer, 100% in advance.</strong> {codNote || 'Every piece is made to order, so payment is taken in advance.'}</p>
-          <p className="hint">Place your order first. It is reserved for you for 48 hours, and you will get your order number and these details again, with a button to send us the payment screenshot on WhatsApp.</p>
+          <h2>How your order is confirmed</h2>
+          <p><strong>We call you to confirm.</strong> After you place your order, our team calls you on the number above to confirm your piece, size and delivery details before we start making it.</p>
           {whatsappNumber ? (
             <p className="hint">
-              Questions before you pay?{' '}
-              <a href={waLink(whatsappNumber, 'Assalam o Alaikum! I have a question before placing my order.') ?? undefined} rel="noopener">
+              Questions first?{' '}
+              <a href={waLink(whatsappNumber, 'Assalam o Alaikum! I have a question before placing my order.') ?? undefined} rel="noopener" onClick={() => track('Contact', { content_name: 'checkout' })}>
                 Chat with us on WhatsApp
               </a>
             </p>
           ) : null}
-          <BankDetails bank={bank} />
         </div>
 
         {notConfigured ? (

@@ -7,13 +7,12 @@ import { orderMessage, type OrderCustomer } from '@/lib/orderMessage'
 import { track } from '@/lib/pixel'
 import type { Quote } from '@/lib/types'
 import { waLink } from '@/lib/whatsapp'
-import { BankDetails } from './BankDetails'
 import { useStore } from './StoreProvider'
 
 type LastOrder = { ref: string; quote: Quote; customer: OrderCustomer }
 
 export function OrderConfirmed() {
-  const { whatsappNumber, bank, deliveryTime } = useStore()
+  const { whatsappNumber, deliveryTime } = useStore()
   const [order, setOrder] = useState<LastOrder | null | undefined>(undefined)
 
   useEffect(() => {
@@ -58,34 +57,34 @@ export function OrderConfirmed() {
     )
   }
 
-  const wa = waLink(whatsappNumber, orderMessage({ ref: order.ref, quote: order.quote, customer: order.customer, payment: true }))
+  const wa = waLink(whatsappNumber, orderMessage({ ref: order.ref, quote: order.quote, customer: order.customer }))
 
   return (
     <div className="confirmed">
       <p className="confirmed__ref">Order {order.ref}</p>
       <h1>Thank you, {order.customer.name.split(' ')[0]}. Your order is placed.</h1>
-      <p className="lede">One step left: pay in advance so we can start making your piece. Your order is reserved for 48 hours; unpaid orders are cancelled after that.</p>
+      <p className="lede">Our team will call you on {order.customer.phone} shortly to confirm your order. Please keep your phone close.</p>
 
       <ol className="paysteps">
         <li>
-          <h2>Transfer {formatPKR(order.quote.total)}</h2>
-          <p className="muted">From any bank app, JazzCash or Easypaisa, to:</p>
-          <BankDetails bank={bank} />
+          <h2>We call you to confirm</h2>
+          <p className="muted">We go over your piece, size and delivery address with you.</p>
         </li>
         <li>
-          <h2>Send us the screenshot</h2>
-          <p className="muted">On WhatsApp, with your order number {order.ref}. The message is written for you; just attach the screenshot.</p>
-          {wa ? (
-            <a className="btn" href={wa} rel="noopener">Send payment screenshot on WhatsApp</a>
-          ) : (
-            <p className="muted">We will contact you on {order.customer.phone}.</p>
-          )}
+          <h2>We make your piece</h2>
+          <p className="muted">Every VASTRÉ piece is made to order, just for you.</p>
         </li>
         <li>
-          <h2>We confirm and start making it</h2>
-          <p className="muted">{deliveryTime || 'We confirm your payment on WhatsApp and share the tracking number when it ships.'}</p>
+          <h2>Delivered to your door</h2>
+          <p className="muted">{deliveryTime || 'We share the tracking number as soon as it ships.'}</p>
         </li>
       </ol>
+      {wa ? (
+        <p className="muted">
+          Can&apos;t wait for the call?{' '}
+          <a href={wa} rel="noopener" onClick={() => track('Contact', { content_name: 'order confirmed' })}>Message us on WhatsApp</a>
+        </p>
+      ) : null}
 
       <section className="summary" aria-label="Order details">
         <h2>Order details</h2>
@@ -99,7 +98,7 @@ export function OrderConfirmed() {
         </ul>
         <dl>
           <div className="summary__row"><dt>Delivery</dt><dd>{order.quote.deliveryFee > 0 ? formatPKR(order.quote.deliveryFee) : 'Free'}</dd></div>
-          <div className="summary__row summary__total"><dt>Total, paid in advance</dt><dd>{formatPKR(order.quote.total)}</dd></div>
+          <div className="summary__row summary__total"><dt>Total</dt><dd>{formatPKR(order.quote.total)}</dd></div>
         </dl>
         <p className="muted">Deliver to: {order.customer.address}, {order.customer.city}</p>
       </section>

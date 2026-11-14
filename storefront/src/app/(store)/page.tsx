@@ -45,8 +45,11 @@ export default async function HomePage() {
 
   const featured = products.filter((p) => p.featured)
   const pool = featured.length >= 4 ? featured : products
-  // One full row: 4 across on desktop, 2 by 2 on phones.
-  const picks = pool.slice(0, 4)
+  // Two full rows: 4 across on desktop, 2 by 2 on phones. Shown straight after the hero, so
+  // visitors from ads see pieces and prices without scrolling past the brand sections.
+  const picks = pool.slice(0, 8)
+  // With the looping video, the hero button opens every piece rather than one collection.
+  if (settings.heroVideo || settings.heroVideoWide) slides[0] = { ...slides[0], href: '/shop' }
 
   const story = settings.storyImage ?? products.find((p) => (p.images?.length ?? 0) > 2)?.images?.[2]
   const looks = (settings.lookbook ?? []).filter((l) => l?.image?.asset && l.product?.slug).slice(0, 12)
@@ -62,8 +65,22 @@ export default async function HomePage() {
     <>
       <HeroSlider slides={slides} video={{ phone: settings.heroVideo, wide: settings.heroVideoWide }} />
 
-      {collections.length > 0 ? (
+      {picks.length > 0 ? (
         <section className="section">
+          <div className="wrap">
+            <div className="sec-head">
+              <h2>The collection</h2>
+              <Link href="/shop" className="link">
+                View all {products.length} pieces
+              </Link>
+            </div>
+            <ProductGrid products={picks} />
+          </div>
+        </section>
+      ) : null}
+
+      {collections.length > 0 ? (
+        <section className="section section--tint">
           <div className="wrap">
             <div className="sec-head">
               <h2>Shop by edit</h2>
@@ -79,20 +96,6 @@ export default async function HomePage() {
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
-      ) : null}
-
-      {picks.length > 0 ? (
-        <section className="section section--tint">
-          <div className="wrap">
-            <div className="sec-head">
-              <h2>{featured.length >= 4 ? 'Our picks' : 'New arrivals'}</h2>
-              <Link href="/shop" className="link">
-                View all
-              </Link>
-            </div>
-            <ProductGrid products={picks} />
           </div>
         </section>
       ) : null}

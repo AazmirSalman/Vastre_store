@@ -47,7 +47,7 @@ export async function saveOrder(o: OrderInput): Promise<void> {
       _id: `orders.${o.ref}`,
       _type: 'order',
       ref: o.ref,
-      status: 'awaiting_payment',
+      status: 'new',
       placedAt: new Date().toISOString(),
       customer: strip(o.customer),
       items: o.quote.lines.map((l, i) => ({
@@ -75,7 +75,7 @@ export async function alertOwner(o: OrderInput, saved: boolean): Promise<void> {
   if (!topic || !ID_SAFE.test(topic)) return
   const items = o.quote.lines.reduce((n, l) => n + l.qty, 0)
   const body = saved
-    ? `${formatPKR(o.quote.total)} · ${items} ${items === 1 ? 'piece' : 'pieces'} · ${o.customer.city}. Awaiting payment. Open the panel to see the details.`
+    ? `${formatPKR(o.quote.total)} · ${items} ${items === 1 ? 'piece' : 'pieces'} · ${o.customer.city}. CALL THE CUSTOMER NOW to confirm. Open the panel for her number.`
     : `${formatPKR(o.quote.total)} · ${o.customer.city}. The order could NOT be saved in the panel: the customer was asked to send it on WhatsApp. Check WhatsApp now.`
   try {
     await fetch(`https://ntfy.sh/${topic}`, {
